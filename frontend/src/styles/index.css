@@ -1,0 +1,217 @@
+/* ============================================================================
+   Sydorak Anodização — Design System (CSS-first, Tailwind v4)
+   Fonte da verdade: /DESIGN.md (v1.0). Todos os tokens abaixo são tradução
+   direta do frontmatter do DESIGN.md. NÃO inventar valores nem usar defaults
+   do Tailwind. Para alterar um token, altere o DESIGN.md e replique aqui.
+   ============================================================================ */
+
+/* 1. Fontes — Anek Telugu (variável, pesos 100–800, via Google Fonts).
+      Família única do sistema: sem fonte secundária, sem itálico no DS.       */
+@import "https://fonts.googleapis.com/css2?family=Anek+Telugu:wght@100..800&display=swap";
+
+/* 2. Tailwind v4 (CSS-first) — substitui as diretivas @tailwind da v3.        */
+@import "tailwindcss";
+
+/* 3. Tokens do Design System ------------------------------------------------ */
+@theme {
+  /* ---- Base de espaçamento (grid de 4/8 pontos do DS) -------------------- */
+  --spacing: 4px;                       /* spacing.base — unidade da escala    */
+
+  /* ===== Cores =========================================================== */
+
+  /* ---- Marca ----------------------------------------------------------- */
+  --color-primary: #F0C51C;             /* a "voltagem" amarelo-dourada        */
+  --color-primary-strong: #C59D1D;
+  /* paradas do gradiente primário (90°, 0% 32% 100%) */
+  --color-primary-gradient-from: #C59D1D;
+  --color-primary-gradient-mid: #EEC00D;
+  --color-primary-gradient-to: #FCE16C;
+
+  --color-secondary: #1E4FA0;           /* royal — palavras-chave/links claros */
+  --color-sky: #78B5E3;                 /* acento sobre fundo escuro           */
+  /* paradas do gradiente secundário (90°, 0% 50% 100%) */
+  --color-secondary-gradient-from: #78B5E3;
+  --color-secondary-gradient-mid: #0E55A9;
+  --color-secondary-gradient-to: #08418B;
+
+  /* ---- Superfície ------------------------------------------------------ */
+  --color-canvas: #FAF8F8;              /* fundo-padrão de página/card         */
+  --color-surface: #F4F4F5;             /* blocos destacados claros            */
+  --color-surface-alt: #F3F4F8;         /* viés azul: icon-chip / tab inativa  */
+  --color-surface-dark: #0E2240;
+  --color-surface-darkest: #011025;     /* navy quase preto — hero/footer/CTA  */
+
+  /* ---- Texto ----------------------------------------------------------- */
+  --color-ink: #011025;                 /* headlines em fundo claro            */
+  --color-body: #3F3F3F;                /* corpo de texto (inferido)           */
+  --color-muted: #71717A;               /* apoio/legendas                      */
+  --color-on-dark: #FFFFFF;
+  --color-on-dark-muted: #C7CDD9;       /* secundário sobre navy (inferido)    */
+
+  /* ---- Hairlines (inferidos) ------------------------------------------- */
+  --color-hairline: #E4E4E7;
+  --color-hairline-strong: #D4D4D8;
+
+  /* ---- Semântica ------------------------------------------------------- */
+  --color-whatsapp: #25D366;
+  --color-whatsapp-text: #1FA855;
+  --color-success: #16A34A;             /* inferido — validar antes de prod    */
+  --color-destructive: #DC2626;         /* inferido — validar antes de prod    */
+
+  /* ---- On-Surface ------------------------------------------------------ */
+  --color-on-primary: #011025;          /* texto navy sobre amarelo/gradiente  */
+  --color-on-secondary: #FFFFFF;
+
+  /* ---- Gradientes prontos (não geram utilitário; usar via var()) ------- */
+  --gradient-primary: linear-gradient(
+    90deg,
+    var(--color-primary-gradient-from) 0%,
+    var(--color-primary-gradient-mid) 32%,
+    var(--color-primary-gradient-to) 100%
+  );
+  --gradient-secondary: linear-gradient(
+    90deg,
+    var(--color-secondary-gradient-from) 0%,
+    var(--color-secondary-gradient-mid) 50%,
+    var(--color-secondary-gradient-to) 100%
+  );
+
+  /* ===== Tipografia ====================================================== */
+  --font-sans: "Anek Telugu", system-ui, sans-serif;
+
+  /* h1-hero (único a 60px; cai p/ 40px no mobile) */
+  --text-h1-hero: 60px;
+  --text-h1-hero--line-height: 1.05;
+  --text-h1-hero--letter-spacing: -0.02em;
+  --text-h1-hero--font-weight: 800;
+  --text-h1-hero-mobile: 40px;
+  --text-h1-hero-mobile--line-height: 1.05;
+  --text-h1-hero-mobile--letter-spacing: -0.02em;
+  --text-h1-hero-mobile--font-weight: 800;
+
+  /* h2-section (abre as demais seções) */
+  --text-h2-section: 48px;
+  --text-h2-section--line-height: 1.1;
+  --text-h2-section--letter-spacing: -0.01em;
+  --text-h2-section--font-weight: 700;
+  --text-h2-section-mobile: 32px;
+  --text-h2-section-mobile--line-height: 1.1;
+  --text-h2-section-mobile--letter-spacing: -0.01em;
+  --text-h2-section-mobile--font-weight: 700;
+
+  /* h3-subtitle */
+  --text-h3-subtitle: 32px;
+  --text-h3-subtitle--line-height: 1.15;
+  --text-h3-subtitle--letter-spacing: -0.01em;
+  --text-h3-subtitle--font-weight: 700;
+  --text-h3-subtitle-mobile: 24px;
+  --text-h3-subtitle-mobile--line-height: 1.15;
+  --text-h3-subtitle-mobile--letter-spacing: -0.01em;
+  --text-h3-subtitle-mobile--font-weight: 700;
+
+  /* h4-card */
+  --text-h4-card: 20px;
+  --text-h4-card--line-height: 1.3;
+  --text-h4-card--letter-spacing: 0;
+  --text-h4-card--font-weight: 700;
+
+  /* lead (parágrafos longos de seção — desktop) */
+  --text-lead: 18px;
+  --text-lead--line-height: 1.6;
+  --text-lead--letter-spacing: 0;
+  --text-lead--font-weight: 400;
+
+  /* body (cards e mobile) */
+  --text-body: 16px;
+  --text-body--line-height: 1.6;
+  --text-body--letter-spacing: 0;
+  --text-body--font-weight: 400;
+
+  /* body-sm */
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: 1.5;
+  --text-body-sm--letter-spacing: 0;
+  --text-body-sm--font-weight: 400;
+
+  /* highlight (highlight-line, peso 500) */
+  --text-highlight: 16px;
+  --text-highlight--line-height: 1.5;
+  --text-highlight--letter-spacing: 0;
+  --text-highlight--font-weight: 500;
+
+  /* label */
+  --text-label: 14px;
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: 0;
+  --text-label--font-weight: 600;
+
+  /* eyebrow (selo de seção — aplicar utilitário `uppercase` no uso) */
+  --text-eyebrow: 12px;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.08em;
+  --text-eyebrow--font-weight: 600;
+
+  /* nav-link */
+  --text-nav-link: 16px;
+  --text-nav-link--line-height: 1.25;
+  --text-nav-link--letter-spacing: 0;
+  --text-nav-link--font-weight: 500;
+
+  /* button-md (CTA canônico — sempre uppercase no uso) */
+  --text-button-md: 16px;
+  --text-button-md--line-height: 1;
+  --text-button-md--letter-spacing: 0.04em;
+  --text-button-md--font-weight: 600;
+
+  /* button-sm (sempre uppercase no uso) */
+  --text-button-sm: 14px;
+  --text-button-sm--line-height: 1;
+  --text-button-sm--letter-spacing: 0.04em;
+  --text-button-sm--font-weight: 600;
+
+  /* small */
+  --text-small: 12px;
+  --text-small--line-height: 1.4;
+  --text-small--letter-spacing: 0;
+  --text-small--font-weight: 400;
+
+  /* muted (token tipográfico; não confundir com --color-muted) */
+  --text-muted: 14px;
+  --text-muted--line-height: 1.5;
+  --text-muted--letter-spacing: 0;
+  --text-muted--font-weight: 400;
+
+  /* blockquote */
+  --text-blockquote: 20px;
+  --text-blockquote--line-height: 1.5;
+  --text-blockquote--letter-spacing: 0;
+  --text-blockquote--font-weight: 500;
+
+  /* ===== Radius ========================================================== */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* ===== Spacing nomeado (ritmo do DS) =================================== */
+  --spacing-section-y: 96px;            /* respiro vertical entre seções (dt)  */
+  --spacing-section-y-mobile: 56px;
+  --spacing-card-padding: 24px;
+  --spacing-field-gap: 16px;
+
+  /* ===== Elevação (sombras navy translúcido — nunca preto puro) ========== */
+  --shadow-card: 0 1px 2px rgba(1, 16, 37, 0.04), 0 8px 24px rgba(1, 16, 37, 0.06);
+  --shadow-floating: 0 12px 40px rgba(1, 16, 37, 0.12);  /* card branco s/ navy */
+  --shadow-nav: 0 2px 12px rgba(1, 16, 37, 0.08);        /* nav light no scroll */
+  --shadow-primary-hover: 0 6px 18px rgba(240, 197, 28, 0.35); /* hover do CTA  */
+  /* anel de foco — ponto de partida do DS (Known Gaps #1: ring sky translúcido) */
+  --shadow-focus-ring: 0 0 0 3px rgba(120, 181, 227, 0.45);
+}
+
+/* 4. Base — canvas + tinta base + fonte do sistema -------------------------- */
+@layer base {
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+  }
+}
