@@ -215,3 +215,18 @@
     @apply bg-canvas text-ink font-sans antialiased;
   }
 }
+
+/* 5. Utilitários do DS ------------------------------------------------------ */
+
+/* btn-label — centralização ÓTICA do texto de botão.
+   Anek Telugu tem métricas verticais altas (espaço reservado p/ sinais télugu);
+   com line-height:1 o texto em caixa-alta "flutua" para cima, deixando a folga
+   inferior maior que a superior. text-box-trim apara a caixa até a altura de
+   maiúscula (topo) e a baseline alfabética (base), centralizando o glifo no eixo
+   vertical do botão. Degrada graciosamente onde não houver suporte. */
+@utility btn-label {
+  line-height: 1;
+  text-box: trim-both cap alphabetic;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}

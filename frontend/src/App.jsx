@@ -1,14 +1,26 @@
-import { Routes, Route } from 'react-router-dom'
-import HomePage from './pages/HomePage'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { RootLayout } from './components/layout/RootLayout'
+import { Home } from './pages/Home'
+import { ComponentLibrary } from './pages/ComponentLibrary'
 
 /**
- * App — roteamento da aplicação.
- * Fase 1: apenas a rota raiz (smoke). Novas páginas entram aqui.
+ * App — roteamento central (Fase 3).
+ *   /design-system  → ComponentLibrary isolada (sem casca global)
+ *   /               → RootLayout (Navbar + Footer)
+ *       index       → Home
  */
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-    </Routes>
+    <BrowserRouter>
+      <Routes>
+        {/* Biblioteca de componentes: renderizada de forma isolada, sem Navbar/Footer */}
+        <Route path="/design-system" element={<ComponentLibrary />} />
+
+        {/* Site público: casca global com rotas aninhadas */}
+        <Route path="/" element={<RootLayout />}>
+          <Route index element={<Home />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
