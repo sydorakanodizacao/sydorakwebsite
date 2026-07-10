@@ -9,16 +9,20 @@
 
 # Dependências
 node_modules/
+.pnp
+.pnp.js
 
 # Builds / saída
 dist/
 dist-ssr/
 build/
+*.tsbuildinfo
 
 # Variáveis de ambiente e arquivos locais
 .env
 .env.*
 *.local
+*.pem
 
 # Logs
 logs/
@@ -32,6 +36,8 @@ pnpm-debug.log*
 .cache/
 .vite/
 .eslintcache
+.sanity/
+coverage/
 
 # Sistema operacional
 .DS_Store

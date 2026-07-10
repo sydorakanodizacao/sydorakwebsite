@@ -1,18 +1,44 @@
 import { useParams, Link } from 'react-router-dom'
-import { mockPosts } from '../data/mock-posts'
+import { useState, useEffect } from 'react'
+import { PortableText } from '@portabletext/react'
+import { sanityClient, urlFor } from '../lib/sanity'
 import Button from '../components/ui/button'
 import Seo from '../components/layout/Seo'
 
+const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
+  ...,
+  "category": category->title
+}`
+
 /**
  * BlogPost — Página interna de exibição de um artigo individual do Blog (Fase 3).
- * Captura o slug da URL via useParams, busca o post correspondente no mock estático,
+ * Captura o slug da URL via useParams, busca o post correspondente no Sanity,
  * e exibe o artigo com design focado em legibilidade (max-w-3xl) e tratamento de erro 404.
  */
 export default function BlogPost() {
   const { slug } = useParams()
+  // key={slug} força remontagem ao trocar de artigo, reiniciando post/loading sem setState síncrono no efeito.
+  return <BlogPostContent key={slug} slug={slug} />
+}
 
-  // Buscar post no mock
-  const post = mockPosts.find((p) => p.slug.current === slug)
+function BlogPostContent({ slug }) {
+  const [post, setPost] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    sanityClient.fetch(POST_QUERY, { slug }).then((data) => {
+      setPost(data)
+      setLoading(false)
+    })
+  }, [slug])
+
+  if (loading) {
+    return (
+      <main className="pt-32 md:pt-40 pb-24 bg-canvas min-h-screen flex items-center justify-center">
+        <div className="h-8 w-8 border-2 border-hairline/30 border-t-primary rounded-full animate-spin" aria-label="Carregando artigo" />
+      </main>
+    )
+  }
 
   // Tratamento de erro caso o post não exista
   if (!post) {
@@ -70,9 +96,9 @@ export default function BlogPost() {
         </h1>
 
         {/* Imagem de Capa */}
-        {post.imageUrl && (
+        {post.mainImage && (
           <img
-            src={post.imageUrl}
+            src={urlFor(post.mainImage).width(1200).height(675).url()}
             alt={post.title}
             className="w-full aspect-video object-cover rounded-xl mt-8 mb-12 shadow-sm border border-hairline/20 select-none"
           />
@@ -83,25 +109,9 @@ export default function BlogPost() {
           {post.excerpt}
         </p>
 
-        {/* Corpo do Artigo (Fake Content Simulado) */}
+        {/* Corpo do Artigo */}
         <div className="space-y-6 text-body text-base leading-relaxed">
-          <p>
-            O processo de anodização é amplamente reconhecido por sua capacidade de transformar a superfície do alumínio, conferindo-lhe uma durabilidade superior a de quase qualquer outro tipo de revestimento disponível. Isso ocorre porque o acabamento anódico não é apenas aplicado superficialmente, mas sim integrado quimicamente à liga metálica base. Esse diferencial faz com que o material seja ideal para aplicações estruturais exigentes.
-          </p>
-          <p>
-            Diferente da pintura tradicional, que depende da adesão mecânica de uma película polimérica sobre a peça, o processo eletroquímico cria uma camada de óxido de alumínio controlada e uniforme. Esse óxido é extremamente duro e resistente à abrasão, agindo como um escudo protetor contra intempéries e agentes corrosivos comuns em grandes centros urbanos ou áreas litorâneas.
-          </p>
-          
-          <h2 className="text-2xl font-bold text-ink pt-6 pb-2 font-sans tracking-tight leading-tight">
-            Vantagens Técnicas em Ambientes Agressivos
-          </h2>
-          
-          <p>
-            Quando submetido a testes de névoa salina (salt spray), o alumínio anodizado demonstra uma resistência significativamente maior a corrosão do que o metal não tratado. Em projetos de fachadas industriais ou residenciais expostas à maresia, a especificação da espessura de camada anódica correta (como as classes de 15 a 20 mícrons) garante a preservação estética e estrutural do edifício por décadas, sem necessidade de manutenção complexa.
-          </p>
-          <p>
-            Adicionalmente, o ciclo de vida do alumínio anodizado o posiciona como uma escolha altamente sustentável. O processo não utiliza solventes orgânicos nocivos e o produto final permanece 100% reciclável, mantendo suas propriedades originais após a fusão. A facilidade de limpeza e a longevidade do material reduzem drasticamente o custo total de propriedade do empreendimento, tornando-o um investimento altamente eficiente a longo prazo.
-          </p>
+          <PortableText value={post.body} />
         </div>
       </article>
     </main>

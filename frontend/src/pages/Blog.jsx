@@ -1,25 +1,47 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import ArticleCard from '../components/ui/article-card'
 import Button from '../components/ui/button'
 import Seo from '../components/layout/Seo'
-import { mockPosts } from '../data/mock-posts'
+import { sanityClient, urlFor } from '../lib/sanity'
 import { cn } from '../utils/cn'
 
-const categories = ['Todas', 'Técnico', 'Normas', 'Aplicações', 'Sustentabilidade']
+const POSTS_QUERY = `*[_type == "post"] | order(publishedAt desc) {
+  _id,
+  title,
+  slug,
+  "category": category->title,
+  publishedAt,
+  excerpt,
+  mainImage
+}`
+
+const CATEGORIES_QUERY = `*[_type == "category"] | order(title asc) { title }`
 
 /**
  * Blog — Página principal de listagem do Blog e Artigos Técnicos (Fase 3).
- * Renderiza os artigos mockados, oferecendo filtros por categoria, ordenação e paginação.
+ * Renderiza os artigos vindos do Sanity, oferecendo filtros por categoria, ordenação e paginação.
  * O cabeçalho é renderizado sob o layout global, com a Navbar em modo claro/sólido.
  */
 export default function Blog() {
+  const [posts, setPosts] = useState([])
+  const [categories, setCategories] = useState(['Todas'])
   const [category, setCategory] = useState('Todas')
   const [sort, setSort] = useState('recentes')
   const [visibleCount, setVisibleCount] = useState(6)
 
+  useEffect(() => {
+    Promise.all([
+      sanityClient.fetch(POSTS_QUERY),
+      sanityClient.fetch(CATEGORIES_QUERY),
+    ]).then(([fetchedPosts, fetchedCategories]) => {
+      setPosts(fetchedPosts)
+      setCategories(['Todas', ...fetchedCategories.map((c) => c.title)])
+    })
+  }, [])
+
   // Lógica de filtragem e ordenação combinada
   const filteredAndSortedPosts = useMemo(() => {
-    let result = [...mockPosts]
+    let result = [...posts]
 
     // 1. Filtrar por categoria
     if (category !== 'Todas') {
@@ -41,7 +63,7 @@ export default function Blog() {
     })
 
     return result
-  }, [category, sort])
+  }, [posts, category, sort])
 
   const handleLoadMore = () => setVisibleCount((prev) => prev + 6)
 
@@ -116,7 +138,13 @@ export default function Blog() {
         {paginatedPosts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {paginatedPosts.map((post) => (
-              <ArticleCard key={post._id} post={post} />
+              <ArticleCard
+                key={post._id}
+                post={{
+                  ...post,
+                  imageUrl: post.mainImage ? urlFor(post.mainImage).width(600).height(400).url() : null,
+                }}
+              />
             ))}
           </div>
         ) : (
