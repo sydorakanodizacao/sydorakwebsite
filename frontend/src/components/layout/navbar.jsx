@@ -3,12 +3,13 @@ import { Menu, X } from 'lucide-react'
 import { cn } from '../../utils/cn'
 import Button from '../ui/button'
 import TextLink from '../ui/text-link'
-import simboloLogo from '../../assets/simbolo.svg'
+import iconNovaLogo from '../../assets/icon-novalogo.png'
 
 const navLinks = [
   { label: 'Início', to: '/' },
   { label: 'Sobre nós', to: '/sobre-nos' },
-  { label: 'Serviços', to: '/servicos' }
+  { label: 'Serviços', to: '/servicos' },
+  { label: 'Blog', to: '/blog' }
 ]
 
 /**
@@ -43,7 +44,7 @@ export default function Navbar({ className }) {
         {/* Logo */}
         <a href="/" className="flex items-center shrink-0 focus:outline-none">
           <img
-            src={simboloLogo}
+            src={iconNovaLogo}
             alt="Sydorak Anodização"
             className="h-[40px] w-auto transition-transform duration-200 hover:scale-[1.03]"
           />

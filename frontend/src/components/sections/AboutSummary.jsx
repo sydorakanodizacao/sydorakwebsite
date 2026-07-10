@@ -54,7 +54,7 @@ export default function AboutSummary() {
   return (
     <section className="w-full py-16 md:py-24 bg-canvas overflow-hidden border-b border-hairline/20">
       <div className="max-w-[1440px] mx-auto px-4 md:px-6 xl:px-[112px] grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-        
+
         {/* Coluna de Conteúdo (Esquerda) */}
         <motion.div
           initial="hidden"
@@ -80,7 +80,7 @@ export default function AboutSummary() {
 
             <motion.div variants={itemVariants} className="w-full mt-6">
               <HighlightLine>
-                Desde 1984, a Sydorak constrói confiança através da consistência técnica.
+                Desde 1986, a Sydorak constrói confiança através da consistência técnica.
               </HighlightLine>
             </motion.div>
 

@@ -1,8 +1,7 @@
 import { cn } from '../../utils/cn'
 import TextLink from '../ui/text-link'
-import NewsletterInput from '../ui/newsletter-input'
 import Button from '../ui/button'
-import logoRodape from '../../assets/logorodape.svg'
+import logoNovaRodape from '../../assets/logonova-rodape.png'
 
 /**
  * Footer — Rodapé global da aplicação.
@@ -26,7 +25,7 @@ export default function Footer({ className, ...props }) {
         {/* Coluna 1: Logo */}
         <div className="lg:col-span-3 flex flex-col items-start justify-center">
           <img
-            src={logoRodape}
+            src={logoNovaRodape}
             alt="Sydorak Anodização"
             className="w-auto h-12"
           />
@@ -46,6 +45,9 @@ export default function Footer({ className, ...props }) {
             </TextLink>
             <TextLink dark={true} to="/servicos">
               Serviços
+            </TextLink>
+            <TextLink dark={true} to="/blog">
+              Blog
             </TextLink>
           </nav>
           <Button variant="primary" icon={true} to="/contato" className="mt-8">
@@ -71,15 +73,16 @@ export default function Footer({ className, ...props }) {
           </nav>
         </div>
 
-        {/* Coluna 4: Newsletter */}
+        {/* Coluna 4: Contatos */}
         <div className="lg:col-span-4 flex flex-col items-start w-full max-w-sm">
           <h6 className="text-primary font-bold text-sm mb-6 uppercase tracking-wider">
-            Newsletter
+            Contatos
           </h6>
-          <p className="text-on-dark-muted text-sm mb-6 leading-relaxed">
-            Assine para receber especificações técnicas e novidades do setor.
-          </p>
-          <NewsletterInput />
+          <div className="flex flex-col gap-4 text-on-dark-muted text-sm">
+            <p><strong>WhatsApp / Fixo:</strong> <br/><a href="https://wa.me/554132862028" className="hover:text-primary transition-colors hover:underline">(41) 3286-2028</a></p>
+            <p><strong>E-mail:</strong> <br/><a href="mailto:contato@sydorak.com.br" className="hover:text-primary transition-colors hover:underline">contato@sydorak.com.br</a></p>
+            <p><strong>Endereço:</strong> <br/>R. Exemplo da Sydorak, 123 - Curitiba, PR</p>
+          </div>
         </div>
       </div>
 
