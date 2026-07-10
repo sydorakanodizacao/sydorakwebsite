@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { cn } from '../../utils/cn'
 import Button from '../ui/button'
@@ -21,9 +22,10 @@ const navLinks = [
   * - Símbolo: simbolo.svg da Sydorak.
   * - Mobile: menu hambúrguer com drawer suspenso correspondente.
   */
-export default function Navbar({ className }) {
+export default function Navbar({ className, solid = false, dark = true }) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -31,14 +33,27 @@ export default function Navbar({ className }) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Auto-detect /blog route to enforce light solid layout
+  const isBlog = location.pathname.startsWith('/blog')
+  const forceSolid = solid || isBlog
+  const forceLight = !dark || isBlog
+
+  const bgClass = forceSolid
+    ? forceLight
+      ? 'bg-white/95 border-neutral-200/50 shadow-md'
+      : 'bg-surface-darkest/95 border-[#1e4fa0]/50 shadow-lg'
+    : scrolled
+      ? 'bg-surface-darkest/95 border-[#1e4fa0]/50 shadow-lg'
+      : 'bg-[rgba(5,17,35,0.3)] border-[#1e4fa0]/30'
+
+  const textDarkClass = forceLight ? false : true
+
   return (
     <nav className={cn('fixed top-0 left-0 w-full z-50 px-6 pt-6 transition-all duration-300', className)}>
       <div
         className={cn(
           'max-w-7xl mx-auto flex items-center justify-between px-6 py-4 rounded-[10px] border backdrop-blur-[6px] transition-all duration-300',
-          scrolled
-            ? 'bg-surface-darkest/95 border-[#1e4fa0]/50 shadow-lg'
-            : 'bg-[rgba(5,17,35,0.3)] border-[#1e4fa0]/30'
+          bgClass
         )}
       >
         {/* Logo */}
@@ -53,7 +68,7 @@ export default function Navbar({ className }) {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-             <TextLink key={link.label} to={link.to} dark={true}>
+             <TextLink key={link.label} to={link.to} dark={textDarkClass}>
                {link.label}
              </TextLink>
           ))}
@@ -68,7 +83,12 @@ export default function Navbar({ className }) {
 
         {/* Mobile Hamburger */}
         <button
-          className="md:hidden flex items-center justify-center text-on-dark p-2 hover:bg-white/5 rounded-md focus:outline-none transition-colors"
+          className={cn(
+            'md:hidden flex items-center justify-center p-2 rounded-md focus:outline-none transition-colors',
+            textDarkClass
+              ? 'text-on-dark hover:bg-white/5'
+              : 'text-ink hover:bg-black/5'
+          )}
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? 'Fechar menu' : 'Abrir menu'}
         >
@@ -79,7 +99,10 @@ export default function Navbar({ className }) {
       {/* Mobile Drawer */}
       <div
         className={cn(
-          'absolute top-full left-6 right-6 mt-2 bg-surface-darkest/95 border border-[#1e4fa0]/40 backdrop-blur-md rounded-[10px] shadow-2xl p-6 md:hidden flex flex-col gap-6 transition-all duration-300 origin-top',
+          'absolute top-full left-6 right-6 mt-2 border backdrop-blur-md rounded-[10px] shadow-2xl p-6 md:hidden flex flex-col gap-6 transition-all duration-300 origin-top',
+          textDarkClass
+            ? 'bg-surface-darkest/95 border-[#1e4fa0]/40'
+            : 'bg-white/95 border-neutral-200',
           mobileOpen
             ? 'opacity-100 scale-y-100 pointer-events-auto'
             : 'opacity-0 scale-y-95 pointer-events-none'
@@ -90,7 +113,7 @@ export default function Navbar({ className }) {
             <TextLink
               key={link.label}
               to={link.to}
-              dark={true}
+              dark={textDarkClass}
               onClick={() => setMobileOpen(false)}
               className="w-full text-left py-1"
             >

@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { RootLayout } from './components/layout/RootLayout'
 import { Home } from './pages/Home'
 import { ComponentLibrary } from './pages/ComponentLibrary'
+import Blog from './pages/Blog'
+import BlogPost from './pages/BlogPost'
 
 /**
  * App — roteamento central (Fase 3).
@@ -19,6 +21,8 @@ export default function App() {
         {/* Site público: casca global com rotas aninhadas */}
         <Route path="/" element={<RootLayout />}>
           <Route index element={<Home />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="blog/:slug" element={<BlogPost />} />
         </Route>
       </Routes>
     </BrowserRouter>

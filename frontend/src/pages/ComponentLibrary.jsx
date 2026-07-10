@@ -26,6 +26,7 @@ import ServiceCard from '../components/ui/service-card'
 import NormCard from '../components/ui/norm-card'
 import FloatingCard from '../components/ui/floating-card'
 import ProcessCard from '../components/ui/process-card'
+import ArticleCard from '../components/ui/article-card'
 import ComparisonRow from '../components/ui/comparison-row'
 import ContactInfoBlock from '../components/ui/contact-info-block'
 import AccordionItem from '../components/ui/accordion-item'
@@ -252,6 +253,23 @@ function CategoryContent({ category }) {
               imageSrc={protecaoEletroquimicaCard}
               href="#"
             />
+          </div>
+        </LibraryComponentItem>
+
+        <LibraryComponentItem
+          title="ArticleCard"
+          description="Card de artigo/blog para listagem no grid do Blog. Fundo canvas, borda hairline e efeito de hover premium."
+          code={`<ArticleCard post={{\n  title: "Qual a diferença entre Anodização e Pintura?",\n  slug: { current: "diferenca-anodizacao-pintura" },\n  category: "Técnico",\n  publishedAt: "2026-06-15T10:00:00Z",\n  excerpt: "Entenda as propriedades mecânicas...",\n  imageUrl: "https://placehold.co/600x400"\n}} />`}
+        >
+          <div className="w-full max-w-md">
+            <ArticleCard post={{
+              title: "Qual a diferença entre Anodização e Pintura?",
+              slug: { current: "diferenca-anodizacao-pintura" },
+              category: "Técnico",
+              publishedAt: "2026-06-15T10:00:00Z",
+              excerpt: "Entenda as propriedades mecânicas e visuais que separam estes dois processos populares na indústria do alumínio.",
+              imageUrl: "https://placehold.co/600x400/0B101B/FFFFFF?text=Anodizacao+vs+Pintura"
+            }} />
           </div>
         </LibraryComponentItem>
 
