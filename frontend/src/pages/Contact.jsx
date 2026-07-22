@@ -1,7 +1,7 @@
 import Seo from '../components/layout/Seo'
 import ContactFormSection from '../components/sections/ContactFormSection'
 import ContactInfoMap from '../components/sections/ContactInfoMap'
-import Faq from '../components/sections/Faq'
+import FAQ from '../components/sections/FAQ'
 
 /**
  * Contact — Página de Contato da Sydorak Anodização (Fase 3).
@@ -18,7 +18,7 @@ export default function Contact() {
       />
       <ContactFormSection />
       <ContactInfoMap />
-      <Faq />
+      <FAQ />
     </main>
   )
 }
