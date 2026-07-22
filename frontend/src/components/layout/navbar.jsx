@@ -4,12 +4,12 @@ import { Menu, X } from 'lucide-react'
 import { cn } from '../../utils/cn'
 import Button from '../ui/button'
 import TextLink from '../ui/text-link'
-import iconNovaLogo from '../../assets/icon-novalogo.png'
+import logoMenu from '../../assets/logomenu.svg'
 
 const navLinks = [
   { label: 'Início', to: '/' },
   { label: 'Sobre nós', to: '/sobre-nos' },
-  { label: 'Serviços', to: '/servicos' },
+  { label: 'Serviço', to: '/servicos' },
   { label: 'Blog', to: '/blog' }
 ]
 
@@ -19,7 +19,7 @@ const navLinks = [
   * DESIGN.md:
   * - Fundo: translúcido com backdrop-blur e cantos arredondados, bordas azuis sutis.
   * - Scroll: transiciona para fundo escuro bg-surface-darkest/95 e sombra.
-  * - Símbolo: simbolo.svg da Sydorak.
+  * - Símbolo: logoMenu (logomenu.svg) da Sydorak.
   * - Mobile: menu hambúrguer com drawer suspenso correspondente.
   */
 export default function Navbar({ className, solid = false, dark = true }) {
@@ -33,10 +33,15 @@ export default function Navbar({ className, solid = false, dark = true }) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Auto-detect /blog route to enforce light solid layout
+  // Auto-detect /blog, /contato, /privacidade, /termos, /cookies routes to enforce light solid layout
   const isBlog = location.pathname.startsWith('/blog')
-  const forceSolid = solid || isBlog
-  const forceLight = !dark || isBlog
+  const isContact = location.pathname.startsWith('/contato')
+  const isPrivacy = location.pathname.startsWith('/privacidade')
+  const isTerms = location.pathname.startsWith('/termos')
+  const isCookies = location.pathname.startsWith('/cookies')
+  const isLightPage = isBlog || isContact || isPrivacy || isTerms || isCookies
+  const forceSolid = solid || isLightPage
+  const forceLight = !dark || isLightPage
 
   const bgClass = forceSolid
     ? forceLight
@@ -59,9 +64,9 @@ export default function Navbar({ className, solid = false, dark = true }) {
         {/* Logo */}
         <a href="/" className="flex items-center shrink-0 focus:outline-none">
           <img
-            src={iconNovaLogo}
+            src={logoMenu}
             alt="Sydorak Anodização"
-            className="h-[40px] w-auto transition-transform duration-200 hover:scale-[1.03]"
+            className="h-[52px] md:h-[58px] w-auto transition-transform duration-200 hover:scale-[1.03]"
           />
         </a>
 

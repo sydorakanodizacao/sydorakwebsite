@@ -48,7 +48,7 @@ export default function Stats() {
           <StatItem
             icon={Award}
             title="40 anos de experiência"
-            description="Desde 1986 — Experiência contínua em anodização"
+            description="Desde 30/06/1986 — Experiência contínua em anodização"
             className="cursor-default"
           />
         </motion.div>

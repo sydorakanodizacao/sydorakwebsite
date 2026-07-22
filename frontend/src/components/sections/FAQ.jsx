@@ -38,11 +38,11 @@ const faqData = [
   },
   {
     title: "Vocês trabalham com especificações técnicas customizadas?",
-    description: "Sim. Projetos críticos (ex: nuclear) exigem especificações próprias. Desenvolvemos procedimentos customizados, avaliamos, obtemos homologação. Nossa história prova isso (Usina Angra 3, 2016)."
+    description: "Sim. Projetos críticos exigem especificações próprias. Desenvolvemos procedimentos customizados, avaliamos, obtemos homologação. Nossa história prova isso (Usina Angra 3, 2016)."
   },
   {
     title: "Quando a anodização não é indicada?",
-    description: "Em casos onde há necessidade de cores muito específicas fora do padrão metálico ou quando o projeto exige cobertura total de imperfeições superficiais, a pintura pode ser mais adequada. Avaliamos tecnicamente cada aplicação."
+    description: "Em casos onde há necessidade de cores/texturas muito específicas fora do padrão metálico ou quando o projeto exige cobertura total da superficiais, a pintura pode ser mais adequada. Avaliamos tecnicamente cada aplicação."
   }
 ]
 

@@ -4,6 +4,7 @@ import { PortableText } from '@portabletext/react'
 import { sanityClient, urlFor } from '../lib/sanity'
 import Button from '../components/ui/button'
 import Seo from '../components/layout/Seo'
+import DashedLink from '../components/ui/dashed-link'
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
   ...,
@@ -80,6 +81,13 @@ function BlogPostContent({ slug }) {
         >
           ← Voltar para o Blog
         </Link>
+
+        {/* Eyebrow Tag */}
+        <div className="mb-4">
+          <DashedLink className="uppercase tracking-wider text-xs pointer-events-none">
+            Blog &amp; Artigos
+          </DashedLink>
+        </div>
 
         {/* Metadados: Categoria e Data */}
         <div className="flex items-center gap-3 text-xs md:text-sm text-muted font-semibold mb-6 select-none">

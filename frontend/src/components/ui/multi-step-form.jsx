@@ -118,11 +118,12 @@ export default function MultiStepForm({ onSubmit, className, ...props }) {
         <button
           type="button"
           onClick={() => setCurrentStep(2)}
+          disabled={currentStep === 1}
           className={cn(
-            'flex-1 text-center py-1.5 text-sm font-medium rounded-[10px] transition-all duration-300 cursor-pointer',
+            'flex-1 text-center py-1.5 text-sm font-medium rounded-[10px] transition-all duration-300',
             currentStep === 2
-              ? 'bg-canvas text-secondary shadow-[0_1px_2px_rgba(1,16,37,0.05)]'
-              : 'text-muted hover:text-ink'
+              ? 'bg-canvas text-secondary shadow-[0_1px_2px_rgba(1,16,37,0.05)] cursor-pointer'
+              : 'text-muted cursor-not-allowed opacity-60'
           )}
         >
           Etapa 2
@@ -140,18 +141,6 @@ export default function MultiStepForm({ onSubmit, className, ...props }) {
             <>
               {/* Etapa 1 Fields */}
               <div className="flex flex-col gap-2">
-                <Label htmlFor="nome">Nome completo:</Label>
-                <Input
-                  id="nome"
-                  name="nome"
-                  value={formData.nome}
-                  onChange={handleChange}
-                  placeholder="Pedro Duarte"
-                  required
-                />
-              </div>
-
-              <div className="flex flex-col gap-2">
                 <Label htmlFor="empresa">Nome da empresa:</Label>
                 <Input
                   id="empresa"
@@ -159,6 +148,18 @@ export default function MultiStepForm({ onSubmit, className, ...props }) {
                   value={formData.empresa}
                   onChange={handleChange}
                   placeholder="Nome da empresa LTDA"
+                  required
+                />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="nome">Nome completo:</Label>
+                <Input
+                  id="nome"
+                  name="nome"
+                  value={formData.nome}
+                  onChange={handleChange}
+                  placeholder="Pedro Duarte"
                   required
                 />
               </div>

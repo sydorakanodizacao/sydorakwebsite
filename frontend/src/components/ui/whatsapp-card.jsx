@@ -83,15 +83,20 @@ export default function WhatsappCard({ title, description, linkText, href = '#',
           )}
 
           {/* CTA Link */}
-          <div className="inline-flex items-center gap-2 text-body-sm font-semibold text-[#23B33A] group-hover:text-[#096512] transition-colors duration-300">
-            <span>{linkText}</span>
+          <div className="inline-flex items-center gap-2 text-body-sm font-medium transition-all duration-300">
+            <span
+              className="bg-clip-text text-transparent"
+              style={{ backgroundImage: 'linear-gradient(-19.64deg, #78B5E3 12.77%, #0E55A9 55.17%, #08418B 97.58%)' }}
+            >
+              {linkText}
+            </span>
             <svg
               width="16"
               height="16"
               viewBox="0 0 16 16"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="shrink-0 size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              className="shrink-0 size-4 text-[#0E55A9] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             >
               <path
                 id="Vector"

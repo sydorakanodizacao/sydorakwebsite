@@ -5,6 +5,8 @@ import Seo from '../components/layout/Seo'
 import { sanityClient, urlFor } from '../lib/sanity'
 import { cn } from '../utils/cn'
 
+import DashedLink from '../components/ui/dashed-link'
+
 const POSTS_QUERY = `*[_type == "post"] | order(publishedAt desc) {
   _id,
   title,
@@ -75,10 +77,9 @@ export default function Blog() {
       <div className="max-w-[1440px] px-4 md:px-6 xl:px-[112px] mx-auto">
         {/* Cabeçalho da página */}
         <div className="border-b border-hairline/20 pb-8 mb-12">
-          <p className="flex items-center gap-2 text-eyebrow uppercase text-muted mb-3 select-none">
-            <span className="h-0.5 w-4 bg-primary" aria-hidden="true" />
-            Conhecimento Técnico
-          </p>
+          <DashedLink className="uppercase tracking-wider text-xs mb-3 pointer-events-none">
+            Blog
+          </DashedLink>
           <h1 className="text-3xl md:text-4xl font-bold text-ink tracking-tight font-sans">
             Blog e Artigos Técnicos
           </h1>

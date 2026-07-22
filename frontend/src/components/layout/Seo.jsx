@@ -9,7 +9,11 @@ import { Helmet } from 'react-helmet-async'
  */
 export default function Seo({ title, description }) {
   const defaultTitle = 'Sydorak Anodização'
-  const fullTitle = title ? `${title} | ${defaultTitle}` : defaultTitle
+  const fullTitle = title
+    ? title.includes('Sydorak')
+      ? title
+      : `${title} | ${defaultTitle}`
+    : defaultTitle
 
   return (
     <Helmet>
@@ -20,3 +24,6 @@ export default function Seo({ title, description }) {
     </Helmet>
   )
 }
+
+export { Seo }
+

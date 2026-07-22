@@ -88,7 +88,7 @@ export default function AboutSummary() {
               variants={itemVariants}
               className="text-muted text-body-sm mt-4 mb-0 leading-relaxed"
             >
-              Evoluímos processos, desenvolvemos pessoas e investimos continuamente em qualidade para atender projetos cada vez mais exigentes. E agora, com novo visual e identidade forte, estamos preparados para os próximos 40 anos.
+              Evoluímos processos, desenvolvemos pessoas e investimos continuamente em qualidade para atender projetos cada vez mais exigentes. E agora, com novo visual e identidade forte, estamos preparados para o futuro.
             </motion.p>
           </div>
 
