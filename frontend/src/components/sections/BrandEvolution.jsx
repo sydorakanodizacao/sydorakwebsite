@@ -1,7 +1,7 @@
 import { motion } from 'motion/react'
 import DashedLink from '../ui/dashed-link'
-import oldLogoUrl from '../../assets/logoantiga-secao.png'
-import newLogoUrl from '../../assets/logonova-secao.png'
+import SydorakLogo from '../ui/sydorak-logo'
+import oldLogoBlackUrl from '../../assets/logoantigasydorak-preta.png'
 
 const containerVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -34,13 +34,11 @@ const itemVariants = {
  * Figma Node: 24110:1359
  * Design System:
  * - Cabeçalho centralizado com tag, título com gradiente azul e citação com marcador amarelo.
- * - Grid comparativo (1986 vs 2026) com cards de fundo suave e legendas destacadas.
+ * - Grid comparativo (1986 vs 2026) exibindo as logos completas (símbolo + tipografia)
+ *   com a logo antiga na cor preta para contraste e a nova logo oficial.
  * - Parágrafo de fechamento sobre posicionamento de mercado.
  */
-export default function BrandEvolution({
-  oldLogo = oldLogoUrl,
-  newLogo = newLogoUrl,
-}) {
+export default function BrandEvolution() {
   return (
     <section className="w-full bg-canvas py-20 md:py-28 px-6 lg:px-12 select-none overflow-hidden border-b border-hairline/20">
       <motion.div
@@ -54,7 +52,7 @@ export default function BrandEvolution({
         <div className="flex flex-col items-center max-w-4xl gap-4">
           {/* Tag / Kicker */}
           <motion.div variants={itemVariants}>
-            <DashedLink className="uppercase tracking-wider text-xs">
+            <DashedLink className="uppercase tracking-wider text-xs pointer-events-none">
               Evolução da Identidade
             </DashedLink>
           </motion.div>
@@ -62,7 +60,7 @@ export default function BrandEvolution({
           {/* Título H2 */}
           <motion.h2
             variants={itemVariants}
-            className="text-3xl md:text-4xl lg:text-[48px] font-bold tracking-tight leading-tight text-ink"
+            className="text-3xl md:text-4xl lg:text-[48px] font-bold tracking-tight leading-tight text-ink font-display"
           >
             <span className="bg-gradient-to-r from-[#78b5e3] via-[#0e53a6] to-[#08418b] bg-clip-text text-transparent">
               40 anos de essência.
@@ -89,18 +87,18 @@ export default function BrandEvolution({
           </motion.div>
         </div>
 
-        {/* Cards Comparativos (Grid de Logos) */}
+        {/* Cards Comparativos (Grid de Logos Completas) */}
         <motion.div
           variants={itemVariants}
           className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-stretch"
         >
-          {/* Card 1: Logo Antiga (1986) */}
+          {/* Card 1: Logo Antiga Completa (1986) */}
           <div className="bg-white border border-neutral-200/80 rounded-2xl p-8 lg:p-12 flex flex-col items-center justify-between gap-8 shadow-sm hover:shadow-md transition-shadow duration-300">
-            <div className="w-full h-64 md:h-72 flex items-center justify-center p-4">
+            <div className="w-full h-48 sm:h-56 md:h-64 flex items-center justify-center p-4">
               <img
-                src={oldLogo}
-                alt="Logo Sydorak 1986"
-                className="max-h-full max-w-full object-contain mx-auto transition-transform duration-300 hover:scale-[1.03]"
+                src={oldLogoBlackUrl}
+                alt="Logo Completa Sydorak 1986"
+                className="max-h-24 sm:max-h-28 md:max-h-32 w-auto max-w-full object-contain mx-auto transition-transform duration-300 hover:scale-[1.03]"
               />
             </div>
             <div className="w-full flex items-start text-left border-l-[3px] border-primary pl-3 py-0.5">
@@ -110,13 +108,12 @@ export default function BrandEvolution({
             </div>
           </div>
 
-          {/* Card 2: Logo Nova (2026) */}
+          {/* Card 2: Logo Nova Completa (2026) */}
           <div className="bg-white border border-neutral-200/80 rounded-2xl p-8 lg:p-12 flex flex-col items-center justify-between gap-8 shadow-sm hover:shadow-md transition-shadow duration-300">
-            <div className="w-full h-64 md:h-72 flex items-center justify-center p-4">
-              <img
-                src={newLogo}
-                alt="Logo Sydorak 2026"
-                className="max-h-full max-w-full object-contain mx-auto transition-transform duration-300 hover:scale-[1.03]"
+            <div className="w-full h-48 sm:h-56 md:h-64 flex items-center justify-center p-4">
+              <SydorakLogo
+                dark={false}
+                className="h-16 sm:h-20 md:h-24 w-auto max-w-full mx-auto transition-transform duration-300 hover:scale-[1.03]"
               />
             </div>
             <div className="w-full flex items-start text-left border-l-[3px] border-primary pl-3 py-0.5">

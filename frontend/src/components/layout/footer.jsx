@@ -97,8 +97,8 @@ export default function Footer({ className, ...props }) {
             </p>
             <p>
               <strong>Horário de Funcionamento:</strong> <br/>
-              Segunda a quinta das 8 as 12 e das 13 as 17:30<br/>
-              Sexta-feira fechamos as 17 horas.
+              Segunda a quinta: das 8h às 12h e das 13h às 17h30<br/>
+              Sexta-feira fechamos às 17h.
             </p>
           </div>
         </div>

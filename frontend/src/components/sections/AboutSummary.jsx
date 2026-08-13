@@ -86,9 +86,9 @@ export default function AboutSummary() {
 
             <motion.p
               variants={itemVariants}
-              className="text-muted text-body-sm mt-4 mb-0 leading-relaxed"
+              className="text-muted text-body mt-4 mb-0 leading-relaxed"
             >
-              Evoluímos processos, desenvolvemos pessoas e investimos continuamente em qualidade para atender projetos cada vez mais exigentes. E agora, com novo visual e identidade forte, estamos preparados para o futuro.
+              Evoluímos processos, desenvolvemos pessoas e investimos continuamente em qualidade para atender os mais variados projetos. E agora, com novo visual e identidade forte, estamos preparados para o futuro.
             </motion.p>
           </div>
 

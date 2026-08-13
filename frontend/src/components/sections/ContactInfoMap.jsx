@@ -39,8 +39,8 @@ const contactBlocks = [
   {
     title: 'Horário de Funcionamento',
     lines: [
-      'Segunda a quinta das 8 as 12 e das 13 as 17:30',
-      'Sexta-feira fechamos as 17 horas.',
+      'Segunda a quinta: das 8h às 12h e das 13h às 17h30',
+      'Sexta-feira fechamos às 17h.',
     ],
   },
 ]

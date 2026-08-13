@@ -10,7 +10,7 @@ const processSteps = [
     step: 'Etapa 1',
     title: 'Recebimento & Inspeção',
     description:
-      'Peças chegam à planta. Nossa equipe inspeciona dimensões, defeitos superficiais e conformidade. Aqui avaliamos seu perfil antes do processo iniciar.',
+      'As peças/perfis são recebidos e inspecionadas conforme padrão de embalagem, quantidade e apresentação de modo geral, de acordo com o pedido.',
   },
   {
     step: 'Etapa 2',
@@ -21,7 +21,8 @@ const processSteps = [
   {
     step: 'Etapa 3',
     title: 'Anodização',
-    description: 'Peças imersas em banho eletrolítico. Aplicamos voltagem e amperagem específicas, criando a camada anódica. Parâmetros variam conforme tipo de anodização desejado (fosco/tons de bronze e preto).',
+    description:
+      'As peças são imersas em banho eletrolítico, quimicamente equalizado e com temperatura controlada, criando a camada anódica de acordo com a especificação do projeto, assim os parâmetros variam entre: Fosco, tons de Bronze e Preto.',
   },
   {
     step: 'Etapa 4',
@@ -33,13 +34,13 @@ const processSteps = [
     step: 'Etapa 5',
     title: 'Secagem e Inspeção Final',
     description:
-      'Peças secas. Realizamos a medição da camada (medida por anodômetro), uniformidade, ausência de defeitos. Tudo deve estar perfeito antes de sair da planta.',
+      'Peças secas, realizamos a medição da camada aplicada (realizada com equipamento específico e calibrado) uniformidade da cor entre as peças e amostra (quando requerida), ausência de defeitos. Tudo deve estar perfeito antes da liberação para a entrega.',
   },
   {
     step: 'Etapa 6',
     title: 'Embalagem & Expedição',
     description:
-      'Peças embaladas de acordo com a aplicação de cada perfil. Documentação técnica (certificados, especificações) acompanha o envio. Pronto para sua obra ou produção.',
+      'Peças embaladas de acordo com a aplicação de cada perfil ou especificação do cliente. Documentação técnica e fiscal (certificado, nota fiscal) acompanham o envio. Pronto para a sua obra ou produção.',
   },
 ]
 

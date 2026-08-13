@@ -5,6 +5,7 @@ import { sanityClient, urlFor } from '../lib/sanity'
 import Button from '../components/ui/button'
 import Seo from '../components/layout/Seo'
 import DashedLink from '../components/ui/dashed-link'
+import SydorakLogo from '../components/ui/sydorak-logo'
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
   ...,
@@ -82,11 +83,9 @@ function BlogPostContent({ slug }) {
           ← Voltar para o Blog
         </Link>
 
-        {/* Eyebrow Tag */}
-        <div className="mb-4">
-          <DashedLink className="uppercase tracking-wider text-xs pointer-events-none">
-            Blog &amp; Artigos
-          </DashedLink>
+        {/* Logo Completa em Destaque */}
+        <div className="mb-6">
+          <SydorakLogo dark={false} className="h-[48px] sm:h-[50px] md:h-[46px] lg:h-[50px] w-auto" />
         </div>
 
         {/* Metadados: Categoria e Data */}

@@ -6,11 +6,11 @@ import DashedLink from '../ui/dashed-link'
 const faqData = [
   {
     title: "Qual é a diferença entre anodização e pintura?",
-    description: "Anodização é um processo eletroquímico que cria uma camada de óxido integrada ao alumínio. Pintura é uma camada polimérica aplicada sobre a superfície. Anodização é durável, mantém o reflexo metálico e resiste melhor a ambientes severos. Pintura oferece cores ilimitadas mas sem o reflexo natural. Escolha depende da aplicação."
+    description: "Anodização é um processo eletroquímico que cria uma camada de óxido integrada ao alumínio. Pintura é uma camada polimérica aplicada sobre a superfície. Anodização é durável, mantém o reflexo metálico e resiste melhor a ambientes severos. A pintura também tem sua durabilidade, apresenta ilimitadas opções de cores, mas sem o reflexo natural. Por isso a escolha depende da aplicação."
   },
   {
     title: "Vocês fazem pintura também?",
-    description: "Não. Somos especialistas em anodização. Essa especialização é nossa força — 40 anos focado nessa expertise. Para pintura, recomendamos parceiros."
+    description: "Não. Somos especialistas em anodização. Essa especialização é nossa força — 40 anos focados nesta expertise. Para pintura, recomendamos parceiros."
   },
   {
     title: "Quanto tempo leva o processo?",
@@ -18,7 +18,7 @@ const faqData = [
   },
   {
     title: "Qual é a vida útil de uma peça anodizada?",
-    description: "Depende da classe de corrosão e ambiente. Em ambientes normais: 20+ anos sem degradação perceptível. Em ambientes severos (marítimo, químico): 10+ anos com revisão periódica. Nós garantimos conformidade com normas técnicas; durabilidade real é frequentemente superior ao esperado, se as manutenções forem feitas de acordo com os períodos indicados."
+    description: "Depende da camada aplicada e do ambiente onde ficará exposta. Em ambientes normais 20+ anos, já em ambientes com exposição severa (marítima/química) 5 a 10 anos desde que respeitadas as manutenções periódicas indicadas."
   },
   {
     title: "Posso anodizar peças já montadas ou acabadas?",
@@ -38,11 +38,11 @@ const faqData = [
   },
   {
     title: "Vocês trabalham com especificações técnicas customizadas?",
-    description: "Sim. Projetos críticos exigem especificações próprias. Desenvolvemos procedimentos customizados, avaliamos, obtemos homologação. Nossa história prova isso (Usina Angra 3, 2016)."
+    description: "Sim. Projetos críticos exigem especificações próprias. Desenvolvemos procedimentos customizados, avaliamos e obtemos homologação. Nossa história comprova isso em projetos de alta exigência com homologação pelo Sistema Eletrobras (2016)."
   },
   {
     title: "Quando a anodização não é indicada?",
-    description: "Em casos onde há necessidade de cores/texturas muito específicas fora do padrão metálico ou quando o projeto exige cobertura total da superficiais, a pintura pode ser mais adequada. Avaliamos tecnicamente cada aplicação."
+    description: "Em casos onde há necessidade de cores/texturas muito específicas fora do padrão metálico ou quando o projeto exige cobertura total da superfície, a pintura pode ser mais adequada. Avaliamos tecnicamente cada aplicação."
   }
 ]
 

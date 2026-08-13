@@ -9,13 +9,13 @@ export default function SupportHighlight({ text, children, icon: IconComponent =
   const displayText = text || children
 
   return (
-    <div className={cn('group flex items-center gap-3 cursor-default select-none', className)}>
+    <div className={cn('flex items-center gap-2.5 cursor-default select-none', className)}>
       <IconComponent 
-        className="h-5 w-5 shrink-0 text-secondary group-hover:text-sky transition-colors duration-200" 
+        className="size-[18px] md:size-5 shrink-0 text-sky" 
         aria-hidden="true" 
       />
       <span 
-        className="text-body-sm text-on-dark-muted group-hover:text-on-dark transition-colors duration-200 leading-snug"
+        className="text-sm md:text-base font-medium text-on-dark-muted leading-snug"
       >
         {displayText}
       </span>

@@ -29,11 +29,11 @@ export default function NormCard({
         aria-hidden="true" 
       />
       <div className="flex-1 min-w-0">
-        <h4 className="font-sans text-label text-secondary group-hover:text-primary transition-colors duration-200 leading-tight truncate">
+        <h4 className="font-sans text-label font-bold text-secondary group-hover:text-primary transition-colors duration-200 leading-snug">
           {displayTitle}
         </h4>
         {description && (
-          <p className="text-body-sm text-muted mt-[3px] leading-tight truncate">
+          <p className="text-body-sm text-muted mt-1 leading-relaxed break-words">
             {description}
           </p>
         )}

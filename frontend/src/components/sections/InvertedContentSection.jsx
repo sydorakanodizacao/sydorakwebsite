@@ -39,39 +39,39 @@ export default function InvertedContentSection({
   sectionImage = sectionImageUrl,
 }) {
   return (
-    <section className="w-full bg-canvas py-20 md:py-28 px-6 lg:px-12 select-none overflow-hidden border-b border-hairline/20">
+    <section className="w-full bg-canvas py-10 sm:py-14 md:py-24 px-4 sm:px-6 lg:px-12 select-none overflow-hidden border-b border-hairline/20">
       <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-        className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center"
+        viewport={{ once: true, margin: '-60px' }}
+        className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-16 items-center"
       >
         {/* Coluna da Esquerda: Bloco de Texto e Solução */}
         <motion.div
           variants={itemVariants}
-          className="lg:col-span-6 flex flex-col items-start gap-4 order-2 lg:order-1"
+          className="lg:col-span-6 flex flex-col items-start gap-2 sm:gap-3 md:gap-4 order-2 lg:order-1"
         >
           {/* Tag / Kicker */}
-          <DashedLink className="uppercase tracking-wider text-xs mb-2">
+          <DashedLink className="uppercase tracking-wider text-xs mb-0.5 md:mb-1">
             Projeto Destaque
           </DashedLink>
 
           {/* Título H2 */}
-          <h2 className="text-3xl md:text-4xl lg:text-[48px] font-bold text-ink tracking-tight leading-tight">
+          <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-[44px] font-bold text-ink tracking-tight leading-snug">
             Fachada Arquitetônica em Edifício Comercial
           </h2>
 
           {/* Subtítulo & Descrição */}
-          <p className="text-neutral-600 text-sm md:text-base leading-relaxed mb-4">
+          <p className="text-neutral-600 text-body leading-relaxed mb-1 sm:mb-2">
             Aqui mostramos uma das aplicações da Anodização na arquitetura diferente de esquadrias.
           </p>
 
           {/* Destaque / Solução */}
-          <h3 className="text-xl md:text-2xl font-semibold text-[#c59d1d] tracking-tight">
+          <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#c59d1d] tracking-tight">
             Solução:
           </h3>
-          <p className="text-neutral-600 text-sm md:text-base leading-relaxed max-w-xl">
+          <p className="text-neutral-600 text-body leading-relaxed max-w-xl">
             Essa fachada foi anodizada na cor fosca e composta conforme projeto arquitetônico, entregando uma composição perfeita.
           </p>
         </motion.div>
@@ -79,7 +79,7 @@ export default function InvertedContentSection({
         {/* Coluna da Direita: Imagem da Fachada Comercial */}
         <motion.div
           variants={itemVariants}
-          className="lg:col-span-6 w-full h-[360px] sm:h-[420px] md:h-[454px] rounded-2xl overflow-hidden shadow-lg group relative order-1 lg:order-2"
+          className="lg:col-span-6 w-full h-[200px] sm:h-[260px] md:h-[380px] lg:h-[454px] rounded-xl md:rounded-2xl overflow-hidden shadow-md group relative order-1 lg:order-2"
         >
           <img
             src={sectionImage}

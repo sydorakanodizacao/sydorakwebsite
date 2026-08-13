@@ -1,5 +1,6 @@
 import { Headset } from 'lucide-react'
 import DashedLink from '../ui/dashed-link'
+import SydorakLogo from '../ui/sydorak-logo'
 import WhatsappCard from '../ui/whatsapp-card'
 import MultiStepForm from '../ui/multi-step-form'
 
@@ -7,7 +8,7 @@ import MultiStepForm from '../ui/multi-step-form'
  * ContactFormSection — Seção Hero da página de Contato.
  *
  * Layout em duas colunas (lg):
- * - Esquerda: kicker, título, descrição, WhatsApp card e footer com headset.
+ * - Esquerda: kicker com SydorakLogo, título, descrição, WhatsApp card e rodapé com headset.
  * - Direita: formulário multi-etapas reutilizando MultiStepForm da biblioteca ui/.
  *
  * Figma nodes:
@@ -27,10 +28,10 @@ export default function ContactFormSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Coluna Esquerda — Textos e CTA WhatsApp */}
           <div className="flex flex-col gap-8">
-            {/* Kicker */}
-            <DashedLink className="uppercase tracking-wider text-xs pointer-events-none">
-              Fale conosco
-            </DashedLink>
+            {/* Logo Completa em Destaque */}
+            <div className="mb-2">
+              <SydorakLogo dark={false} className="h-[48px] sm:h-[50px] md:h-[46px] lg:h-[50px] w-auto" />
+            </div>
 
             {/* Título e Descrição */}
             <div className="flex flex-col gap-4">
@@ -42,20 +43,26 @@ export default function ContactFormSection() {
               </p>
             </div>
 
-            {/* Card WhatsApp */}
+            {/* Bloco 1: Atendimento Rápido WhatsApp */}
             <WhatsappCard
               title="Atendimento rápido pelo WhatsApp"
-              description="Para um atendimento mais ágil, utilize o WhatsApp. Nossa equipe está disponível para responder dúvidas iniciais e orientar sobre os próximos passos."
-              linkText="Solicite uma avaliação técnica do seu projeto"
-              href="https://wa.me/5500000000000"
+              buttonText="Conversar agora"
+              href="https://wa.me/554132862028"
             />
 
-            {/* Footer — Atendimento técnico */}
-            <div className="flex items-center gap-2">
-              <Headset className="size-[14px] text-ink shrink-0" aria-hidden="true" />
-              <span className="text-sm text-ink leading-3">
-                Atendimento técnico direto com especialista
-              </span>
+            {/* Divisão & Bloco 2: Atendimento Técnico Especializado */}
+            <div className="flex flex-col gap-1.5 pt-6 border-t border-hairline">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center justify-center size-9 md:size-10 rounded-xl bg-surface-darkest text-sky shrink-0 shadow-sm">
+                  <Headset className="size-5 md:size-5" aria-hidden="true" />
+                </div>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-ink leading-tight">
+                  Atendimento técnico personalizado
+                </h3>
+              </div>
+              <p className="text-body-sm text-muted leading-snug pl-12">
+                Consultoria e análise detalhada para o seu projeto via formulário.
+              </p>
             </div>
           </div>
 

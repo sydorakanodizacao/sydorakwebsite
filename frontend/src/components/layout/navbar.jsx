@@ -4,7 +4,7 @@ import { Menu, X } from 'lucide-react'
 import { cn } from '../../utils/cn'
 import Button from '../ui/button'
 import TextLink from '../ui/text-link'
-import logoMenu from '../../assets/logomenu.svg'
+import SydorakLogo from '../ui/sydorak-logo'
 
 const navLinks = [
   { label: 'Início', to: '/' },
@@ -19,7 +19,7 @@ const navLinks = [
   * DESIGN.md:
   * - Fundo: translúcido com backdrop-blur e cantos arredondados, bordas azuis sutis.
   * - Scroll: transiciona para fundo escuro bg-surface-darkest/95 e sombra.
-  * - Símbolo: logoMenu (logomenu.svg) da Sydorak.
+  * - Logo Completa: SydorakLogo adaptável ao modo claro/escuro.
   * - Mobile: menu hambúrguer com drawer suspenso correspondente.
   */
 export default function Navbar({ className, solid = false, dark = true }) {
@@ -54,19 +54,18 @@ export default function Navbar({ className, solid = false, dark = true }) {
   const textDarkClass = forceLight ? false : true
 
   return (
-    <nav className={cn('fixed top-0 left-0 w-full z-50 px-6 pt-6 transition-all duration-300', className)}>
+    <nav className={cn('fixed top-0 left-0 w-full z-50 px-4 sm:px-6 pt-4 sm:pt-6 transition-all duration-300', className)}>
       <div
         className={cn(
-          'max-w-7xl mx-auto flex items-center justify-between px-6 py-4 rounded-[10px] border backdrop-blur-[6px] transition-all duration-300',
+          'max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3 sm:py-3.5 rounded-[10px] border backdrop-blur-[6px] transition-all duration-300',
           bgClass
         )}
       >
-        {/* Logo */}
-        <a href="/" className="flex items-center shrink-0 focus:outline-none">
-          <img
-            src={logoMenu}
-            alt="Sydorak Anodização"
-            className="h-[52px] md:h-[58px] w-auto transition-transform duration-200 hover:scale-[1.03]"
+        {/* Logo Completa */}
+        <a href="/" className="flex items-center shrink-0 focus:outline-none py-0.5">
+          <SydorakLogo
+            dark={textDarkClass}
+            className="h-10 sm:h-11 md:h-12 lg:h-[50px] w-auto transition-transform duration-200 hover:scale-[1.02]"
           />
         </a>
 

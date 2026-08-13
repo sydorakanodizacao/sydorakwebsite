@@ -6,6 +6,7 @@ import { sanityClient, urlFor } from '../lib/sanity'
 import { cn } from '../utils/cn'
 
 import DashedLink from '../components/ui/dashed-link'
+import SydorakLogo from '../components/ui/sydorak-logo'
 
 const POSTS_QUERY = `*[_type == "post"] | order(publishedAt desc) {
   _id,
@@ -77,9 +78,9 @@ export default function Blog() {
       <div className="max-w-[1440px] px-4 md:px-6 xl:px-[112px] mx-auto">
         {/* Cabeçalho da página */}
         <div className="border-b border-hairline/20 pb-8 mb-12">
-          <DashedLink className="uppercase tracking-wider text-xs mb-3 pointer-events-none">
-            Blog
-          </DashedLink>
+          <div className="mb-6">
+            <SydorakLogo dark={false} className="h-[48px] sm:h-[50px] md:h-[46px] lg:h-[50px] w-auto" />
+          </div>
           <h1 className="text-3xl md:text-4xl font-bold text-ink tracking-tight font-sans">
             Blog e Artigos Técnicos
           </h1>

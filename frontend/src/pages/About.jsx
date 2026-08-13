@@ -5,8 +5,7 @@ import Stats from '../components/sections/Stats'
 import HistoryTimeline from '../components/sections/HistoryTimeline'
 import BrandEvolution from '../components/sections/BrandEvolution'
 import Sustainability from '../components/sections/Sustainability'
-import FeaturedProject from '../components/sections/FeaturedProject'
-import InvertedContentSection from '../components/sections/InvertedContentSection'
+import FeaturedProjects from '../components/sections/FeaturedProjects'
 import FAQ from '../components/sections/FAQ'
 import FinalCTA from '../components/sections/FinalCTA'
 
@@ -35,8 +34,7 @@ export default function About() {
         <HistoryTimeline />
         <BrandEvolution />
         <Sustainability />
-        <FeaturedProject />
-        <InvertedContentSection />
+        <FeaturedProjects />
         <FAQ />
         <FinalCTA />
       </main>

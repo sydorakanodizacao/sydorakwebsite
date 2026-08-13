@@ -61,7 +61,7 @@ const comparisonData = [
   },
   {
     title: 'Aplicações Ideais',
-    anodizacao: 'Anodização: Arquitetura, industrial, objetos técnicos de longo prazo',
+    anodizacao: 'Anodização: Arquitetura, industrial, peças técnicas de longo prazo.',
     pintura: 'Pintura: Aplicações em diversas áreas com possibilidades de cores e texturas ilimitadas',
   },
 ]
@@ -90,8 +90,8 @@ export default function AnodizationVsPainting() {
           className="lg:col-span-5 lg:sticky lg:top-28 self-start flex flex-col items-start lg:-mt-3"
         >
           {/* Tag / Kicker */}
-          <DashedLink className="uppercase tracking-wider text-xs mb-3">
-            Tecnologia de ponta
+          <DashedLink className="uppercase tracking-wider text-xs mb-3 pointer-events-none">
+            Comparativo
           </DashedLink>
 
           {/* Título H2 */}
