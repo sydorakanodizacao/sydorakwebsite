@@ -5,7 +5,7 @@ import Button from '../ui/button'
 import HighlightLine from '../ui/highlight-line'
 import NormCard from '../ui/norm-card'
 import DashedLink from '../ui/dashed-link'
-import sobreNosWebp from '../../assets/sobre-nos-home.webp'
+import sobreNosBg from '../../assets/WhatsApp Image 2026-08-24 at 08.31.32.jpeg'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -437,14 +437,12 @@ export default function QualityStandards() {
             variants={imageVariants}
             className="w-full flex justify-center lg:justify-end lg:h-full order-first lg:order-last"
           >
-            <picture className="w-full max-w-[600px] lg:max-w-none">
-              <source srcSet={sobreNosWebp} type="image/webp" />
-              <img
-                src={sobreNosWebp}
-                alt="Especialista realizando medição técnica precisa com micrômetro digital em perfil de alumínio"
-                className="w-full h-auto lg:min-h-[500px] object-cover rounded-xl shadow-md border border-secondary/10"
-              />
-            </picture>
+            <img
+              src={sobreNosBg}
+              alt="Processo fabril de anodização da Sydorak"
+              className="w-full h-[400px] sm:h-[480px] lg:h-full max-w-[600px] lg:max-w-none object-cover object-center rounded-xl shadow-md border border-secondary/10"
+              loading="lazy"
+            />
           </motion.div>
         </div>
       </section>

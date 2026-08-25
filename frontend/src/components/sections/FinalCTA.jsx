@@ -1,7 +1,7 @@
 import { motion } from 'motion/react'
 import Button from '../ui/button'
 import DashedLink from '../ui/dashed-link'
-import bannerCtaWebp from '../../assets/banner-cta-home.webp'
+import bannerCtaBg from '../../assets/WhatsApp Image 2026-08-24 at 08.30.42 (1).jpeg'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -42,12 +42,15 @@ export default function FinalCTA() {
       <div className="max-w-[1440px] mx-auto px-4 md:px-6 xl:px-[112px]">
         {/* Card do CTA Final */}
         <div className="relative w-full rounded-2xl md:rounded-[20px] bg-surface-darkest overflow-hidden py-14 sm:py-16 md:py-20 px-6 md:px-12 flex items-center justify-center text-center shadow-floating">
-          {/* Imagem de Fundo WebP */}
+          {/* Imagem de Fundo */}
           <img
-            src={bannerCtaWebp}
+            src={bannerCtaBg}
             alt="Estrutura industrial Sydorak"
-            className="absolute inset-0 w-full h-full object-cover opacity-100 z-0"
+            className="absolute inset-0 w-full h-full object-cover object-center z-0"
           />
+
+          {/* Overlay Escuro para Contraste do Texto */}
+          <div className="absolute inset-0 bg-surface-darkest/75 sm:bg-surface-darkest/70 z-10" aria-hidden="true" />
 
           {/* Orquestração do Conteúdo */}
           <motion.div

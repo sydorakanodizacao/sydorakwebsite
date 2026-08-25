@@ -1,6 +1,6 @@
 import Seo from '../components/layout/Seo'
 import Hero from '../components/sections/Hero'
-import heroServicosBg from '../assets/Hero-servicos.png'
+import heroServicosBg from '../assets/WhatsApp Image 2026-08-24 at 08.31.32 (1).jpeg'
 import Stats from '../components/sections/Stats'
 import WhatIsAnodization from '../components/sections/WhatIsAnodization'
 import AnodizationVsPainting from '../components/sections/AnodizationVsPainting'
@@ -31,7 +31,7 @@ export default function Service() {
           secondaryButtonText={null}
           highlightLineText={null}
           bottomText="Atendimento direto com especialista"
-          showDesktopOverlay={false}
+          showDesktopOverlay={true}
         />
         <Stats />
         <WhatIsAnodization />

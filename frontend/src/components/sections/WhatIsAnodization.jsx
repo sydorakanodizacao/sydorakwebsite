@@ -1,7 +1,7 @@
 import { motion } from 'motion/react'
 import { CheckCheck } from 'lucide-react'
 import DashedLink from '../ui/dashed-link'
-import anodizationImageUrl from '../../assets/oqueeanodizacao.png'
+import anodizationImageUrl from '../../assets/WhatsApp Image 2026-08-24 at 08.31.32 (2).jpeg'
 
 const containerVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -64,7 +64,8 @@ export default function WhatIsAnodization({
           <img
             src={anodizationImage}
             alt="Processo eletroquímico de anodização do alumínio"
-            className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+            className="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+            loading="lazy"
           />
         </motion.div>
 

@@ -43,7 +43,7 @@ export default function ServiceCard({
   return (
     <Component
       className={cn(
-        'group relative overflow-hidden rounded-lg flex flex-col justify-end pt-[240px] md:pt-[312px] pb-6 px-6 cursor-pointer bg-surface-darkest select-none decoration-transparent',
+        'group relative overflow-hidden rounded-lg flex flex-col justify-end pt-[180px] md:pt-[220px] pb-6 px-6 cursor-pointer bg-surface-darkest select-none decoration-transparent h-full w-full min-h-[380px] md:min-h-[440px]',
         className
       )}
       {...componentProps}
@@ -65,7 +65,7 @@ export default function ServiceCard({
       />
 
       {/* Conteúdo do Card */}
-      <div className="relative z-20 flex flex-col">
+      <div className="relative z-20 flex flex-col flex-1 justify-end mt-auto">
         {/* Título com Gradiente Dourado Invertido */}
         <h3 className="text-h4-card bg-gradient-to-r from-[#C59D1D] to-[#FCE16C] bg-clip-text text-transparent transition-all duration-300 group-hover:from-[#FCE16C] group-hover:to-[#C59D1D] w-fit font-semibold">
           {title}
@@ -82,7 +82,7 @@ export default function ServiceCard({
         <Button
           variant="secondary"
           className={cn(
-            'w-fit pointer-events-none',
+            'w-fit pointer-events-none mt-auto',
             'group-hover:from-[#C59D1D] group-hover:via-[#EEC00D] group-hover:to-[#FCE16C]',
             'group-hover:text-on-primary group-hover:brightness-[1.04] group-hover:shadow-primary-hover'
           )}

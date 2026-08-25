@@ -118,9 +118,9 @@ export default function Applications({
           </div>
 
           {/* Grid de Aplicações com ComparisonRow da UI */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full items-stretch">
             {applicationsData.map((item, index) => (
-              <motion.div key={index} variants={itemVariants}>
+              <motion.div key={index} variants={itemVariants} className="h-full flex flex-col">
                 <ComparisonRow
                   title={item.title}
                   anodizacao={item.anodizacao}

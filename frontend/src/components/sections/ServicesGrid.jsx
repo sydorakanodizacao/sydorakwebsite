@@ -65,15 +65,16 @@ export default function ServicesGrid() {
         whileInView="visible"
         viewport={{ once: true, margin: '-100px' }}
         variants={containerVariants}
-        className="max-w-[1440px] mx-auto px-4 md:px-6 xl:px-[112px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        className="max-w-[1440px] mx-auto px-4 md:px-6 xl:px-[112px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch"
       >
         {services.map((service, index) => (
-          <motion.div key={index} variants={itemVariants}>
+          <motion.div key={index} variants={itemVariants} className="h-full flex flex-col">
             <ServiceCard
               title={service.title}
               description={service.description}
               imageSrc={service.imageSrc}
               href={service.href}
+              className="h-full"
             />
           </motion.div>
         ))}

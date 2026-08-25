@@ -3,7 +3,7 @@ import Button from '../ui/button'
 import HighlightLine from '../ui/highlight-line'
 import ChecklistItem from '../ui/checklist-item'
 import DashedLink from '../ui/dashed-link'
-import diferenciaisBg from '../../assets/diferenciais-home.webp'
+import diferenciaisBg from '../../assets/WhatsApp Image 2026-08-24 at 08.31.32 (3).jpeg'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -60,12 +60,12 @@ export default function Differentiators() {
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
           variants={imageVariants}
-          className="w-full lg:w-[52%] lg:h-auto flex justify-center lg:justify-start lg:shrink-0"
+          className="w-full lg:w-[52%] lg:h-full flex justify-center lg:justify-start lg:shrink-0"
         >
           <img
             src={diferenciaisBg}
             alt="Especialistas da Sydorak avaliando um projeto de anodização"
-            className="w-full h-auto lg:h-full max-w-[500px] lg:max-w-none object-cover rounded-[10px] shadow-lg border border-secondary/10"
+            className="w-full h-[380px] sm:h-[460px] lg:h-full max-w-[500px] lg:max-w-none object-cover object-center rounded-[10px] shadow-lg border border-secondary/10"
             loading="lazy"
           />
         </motion.div>

@@ -55,6 +55,7 @@ export default function Hero({
   secondaryButtonTo = '/sobre-nos',
   bottomText = 'Atendimento direto com especialista',
   showDesktopOverlay = true,
+  highlightBlock = false,
 }) {
   return (
     <section className="relative w-full min-h-screen flex items-center overflow-hidden bg-surface-darkest">
@@ -93,18 +94,18 @@ export default function Hero({
         {/* Headline (H1) */}
         <motion.h1
           variants={itemVariants}
-          className="text-h1-hero-mobile md:text-h1-hero text-on-dark w-full max-w-[580px] tracking-tight mb-8"
+          className="text-h1-hero-mobile md:text-h1-hero text-on-dark w-full max-w-[580px] md:max-w-[680px] lg:max-w-[720px] tracking-tight mb-8"
         >
           {highlightPosition === 'first' && highlightedText ? (
             <>
-              <span className="text-sky block md:inline">{highlightedText}</span>{' '}
+              <span className={cn("text-sky", highlightBlock ? "block" : "block md:inline")}>{highlightedText}</span>{' '}
               {title}
             </>
           ) : (
             <>
               {title}{' '}
               {highlightedText && (
-                <span className="text-sky block md:inline">{highlightedText}</span>
+                <span className={cn("text-sky", highlightBlock ? "block" : "block md:inline")}>{highlightedText}</span>
               )}
             </>
           )}

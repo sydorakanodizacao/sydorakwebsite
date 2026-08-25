@@ -1,6 +1,6 @@
 import Seo from '../components/layout/Seo'
 import Hero from '../components/sections/Hero'
-import heroSobrenosBg from '../assets/hero-sobrenos.png'
+import heroSobrenosBg from '../assets/WhatsApp Image 2026-08-24 at 08.30.42.jpeg'
 import Stats from '../components/sections/Stats'
 import HistoryTimeline from '../components/sections/HistoryTimeline'
 import BrandEvolution from '../components/sections/BrandEvolution'
@@ -28,7 +28,8 @@ export default function About() {
           secondaryButtonText={null}
           highlightLineText={null}
           bottomText="Atendimento direto com especialista"
-          showDesktopOverlay={false}
+          showDesktopOverlay={true}
+          highlightBlock={true}
         />
         <Stats />
         <HistoryTimeline />
