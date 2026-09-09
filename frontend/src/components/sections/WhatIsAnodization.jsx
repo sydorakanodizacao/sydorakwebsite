@@ -1,7 +1,7 @@
 import { motion } from 'motion/react'
 import { CheckCheck } from 'lucide-react'
 import DashedLink from '../ui/dashed-link'
-import anodizationImageUrl from '../../assets/WhatsApp Image 2026-08-24 at 08.31.32 (2).jpeg'
+import anodizationImageUrl from '../../assets/anodizacao-processo-eletroquimico.jpg'
 
 const containerVariants = {
   hidden: { opacity: 0, y: 30 },

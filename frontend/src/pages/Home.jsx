@@ -10,7 +10,7 @@ import FinalCTA from '../components/sections/FinalCTA'
 export function Home() {
   return (
     <main className="w-full min-h-screen">
-      <Hero />
+      <Hero lightOverlay />
       <Stats />
       <Differentiators />
       <ServicesGrid />

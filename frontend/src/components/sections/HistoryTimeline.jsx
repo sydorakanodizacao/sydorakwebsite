@@ -8,10 +8,8 @@ const timelineData = [
     id: 'onde-tudo-comecou',
     title: 'Onde tudo começou',
     paragraphs: [
-      'Toda grande história começa com uma decisão.',
-      'Em 1986, Mario Sydorak iniciou a empresa praticamente sozinho. Mais do que abrir um negócio, decidiu construir uma reputação. Naquela época, cada cliente conquistado representava um voto de confiança. Cada projeto concluído aumentava a responsabilidade de entregar ainda melhor no projeto seguinte.',
-      'Sem grandes estruturas. Sem atalhos. Apenas trabalho, dedicação e a convicção de que qualidade sempre seria o melhor investimento.',
-      'Foi assim que nasceram os princípios que continuam orientando a Sydorak até hoje.',
+      'Em 1986, Mario Sydorak iniciou a empresa praticamente sozinho, transformando conhecimento técnico, trabalho e determinação em um negócio construído cliente a cliente.',
+      'Não havia atalhos. Cada serviço entregue era uma oportunidade de conquistar confiança e cada novo cliente, uma responsabilidade ainda maior. Foi assim que nasceram os valores que permanecem na essência da Sydorak: qualidade, compromisso e respeito.',
     ],
   },
   {

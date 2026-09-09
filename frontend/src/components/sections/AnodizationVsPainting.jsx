@@ -31,8 +31,8 @@ const itemVariants = {
 const comparisonData = [
   {
     title: 'Tipo de Cobertura',
-    anodizacao: 'Anodização: Camada eletroquímica — integrada ao alumínio',
-    pintura: 'Pintura: Camada polimérica — aplicada sobre superfície.',
+    anodizacao: 'Anodização: Camada eletroquímica, integrada ao alumínio.',
+    pintura: 'Pintura: Camada polimérica aplicada sobre a superfície.',
   },
   {
     title: 'Reflexo do Metal',
@@ -41,7 +41,7 @@ const comparisonData = [
   },
   {
     title: 'Durabilidade',
-    anodizacao: 'Anodização: Extremamente durável — resistência à abrasão e corrosão',
+    anodizacao: 'Anodização: Extremamente durável, resistente à abrasão e corrosão',
     pintura: 'Pintura: Durável, se respeitadas as normas e formas de aplicação.',
   },
   {
@@ -51,7 +51,7 @@ const comparisonData = [
   },
   {
     title: 'Manutenção',
-    anodizacao: 'Anodização: Mínima — apenas limpeza periódica',
+    anodizacao: 'Anodização: Mínima, apenas limpeza periódica',
     pintura: 'Pintura: Apenas limpeza',
   },
   {
@@ -82,12 +82,12 @@ export default function AnodizationVsPainting() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-100px' }}
-        className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start"
+        className="max-w-5xl mx-auto flex flex-col items-center"
       >
-        {/* Coluna da Esquerda: Chamada Sticky */}
+        {/* Cabeçalho Centralizado */}
         <motion.div
           variants={itemVariants}
-          className="lg:col-span-5 lg:sticky lg:top-28 self-start flex flex-col items-start lg:-mt-3"
+          className="flex flex-col items-center text-center max-w-2xl mb-12"
         >
           {/* Tag / Kicker */}
           <DashedLink className="uppercase tracking-wider text-xs mb-3 pointer-events-none">
@@ -100,7 +100,7 @@ export default function AnodizationVsPainting() {
           </h2>
 
           {/* Descrição */}
-          <p className="text-neutral-600 text-sm md:text-base leading-relaxed mb-8 max-w-md">
+          <p className="text-neutral-600 text-sm md:text-base leading-relaxed mb-8">
             Muitos clientes confundem. Aqui clarificamos algumas diferenças entre os 2 beneficiamentos.
           </p>
 
@@ -110,21 +110,19 @@ export default function AnodizationVsPainting() {
           </Button>
         </motion.div>
 
-        {/* Coluna da Direita: Lista Comparativa de Cards */}
-        <motion.div
-          variants={itemVariants}
-          className="lg:col-span-7 flex flex-col gap-4 w-full"
-        >
+        {/* Grade Comparativa de Cards — 2 colunas no desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
           {comparisonData.map((item, index) => (
             <motion.div key={index} variants={itemVariants}>
               <ComparisonRow
                 title={item.title}
                 anodizacao={item.anodizacao}
                 pintura={item.pintura}
+                className="h-full"
               />
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </motion.div>
     </section>
   )

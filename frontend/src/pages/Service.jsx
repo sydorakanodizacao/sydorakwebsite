@@ -21,6 +21,7 @@ export default function Service() {
       <main>
         <Hero
           backgroundImage={heroServicosBg}
+          lightOverlay
           eyebrow="Serviço"
           highlightedText="Anodização de alumínio"
           highlightPosition="first"

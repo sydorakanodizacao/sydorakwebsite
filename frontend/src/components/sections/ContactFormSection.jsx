@@ -33,25 +33,23 @@ export default function ContactFormSection() {
               <SydorakLogo dark={false} className="h-[48px] sm:h-[50px] md:h-[46px] lg:h-[50px] w-auto" />
             </div>
 
-            {/* Título e Descrição */}
-            <div className="flex flex-col gap-4">
-              <h1 className="text-5xl md:text-6xl font-semibold text-ink tracking-[-1.5px] leading-none font-display">
-                Pronto para começar?
-              </h1>
-              <p className="text-lg text-ink leading-none max-w-[545px]">
-                Fale conosco agora! Queremos ajudar você a transformar alumínio em soluções extraordinárias.
-              </p>
-            </div>
+            {/* Título */}
+            <h1 className="text-5xl md:text-6xl font-semibold text-ink tracking-[-1.5px] leading-none font-display">
+              Pronto para começar?
+            </h1>
 
             {/* Bloco 1: Atendimento Rápido WhatsApp */}
             <WhatsappCard
-              title="Atendimento rápido pelo WhatsApp"
+              title="Atendimento pelo WhatsApp"
               buttonText="Conversar agora"
               href="https://wa.me/554132862028"
             />
+          </div>
 
-            {/* Divisão & Bloco 2: Atendimento Técnico Especializado */}
-            <div className="flex flex-col gap-1.5 pt-6 border-t border-hairline">
+          {/* Coluna Direita — Atendimento Técnico Personalizado + Formulário Multi-etapas */}
+          <div className="w-full max-w-[488px] lg:max-w-none flex flex-col gap-6">
+            {/* Bloco: Atendimento Técnico Especializado */}
+            <div className="flex flex-col gap-1.5">
               <div className="flex items-center gap-3">
                 <div className="flex items-center justify-center size-9 md:size-10 rounded-xl bg-surface-darkest text-sky shrink-0 shadow-sm">
                   <Headset className="size-5 md:size-5" aria-hidden="true" />
@@ -64,10 +62,7 @@ export default function ContactFormSection() {
                 Consultoria e análise detalhada para o seu projeto via formulário.
               </p>
             </div>
-          </div>
 
-          {/* Coluna Direita — Formulário Multi-etapas */}
-          <div className="w-full max-w-[488px] lg:max-w-none">
             <MultiStepForm onSubmit={handleFormSubmit} />
           </div>
         </div>

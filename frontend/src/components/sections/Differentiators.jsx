@@ -3,7 +3,7 @@ import Button from '../ui/button'
 import HighlightLine from '../ui/highlight-line'
 import ChecklistItem from '../ui/checklist-item'
 import DashedLink from '../ui/dashed-link'
-import diferenciaisBg from '../../assets/WhatsApp Image 2026-08-24 at 08.31.32 (3).jpeg'
+import diferenciaisBg from '../../assets/diferenciais-medicao-camada.jpg'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -48,7 +48,7 @@ const imageVariants = {
  * - Grid: 1 col (mobile), 2 cols (desktop) com gap de 12/16.
  * - Elementos: DashedLink, H2 (destaque text-secondary), HighlightLine, ChecklistItem, Button.
  * - Animações: staggerChildren no texto + image slide-in a partir da esquerda.
- * - Otimização: Imagem WebP de 56KB.
+ * - Otimização: Imagem JPEG de ~220KB.
  */
 export default function Differentiators() {
   return (
@@ -64,7 +64,7 @@ export default function Differentiators() {
         >
           <img
             src={diferenciaisBg}
-            alt="Especialistas da Sydorak avaliando um projeto de anodização"
+            alt="Medição de espessura da camada anódica com medidor digital Fischer"
             className="w-full h-[380px] sm:h-[460px] lg:h-full max-w-[500px] lg:max-w-none object-cover object-center rounded-[10px] shadow-lg border border-secondary/10"
             loading="lazy"
           />

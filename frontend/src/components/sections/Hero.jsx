@@ -4,7 +4,7 @@ import HighlightLine from '../ui/highlight-line'
 import SupportHighlight from '../ui/support-highlight'
 import DashedLink from '../ui/dashed-link'
 import SydorakLogo from '../ui/sydorak-logo'
-import heroBg from '../../assets/Hero-home.webp'
+import heroBg from '../../assets/Hero-home.jpg'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -55,6 +55,8 @@ export default function Hero({
   secondaryButtonTo = '/sobre-nos',
   bottomText = 'Atendimento direto com especialista',
   showDesktopOverlay = true,
+  lightOverlay = false,
+  imagePosition = 'center',
   highlightBlock = false,
 }) {
   return (
@@ -63,15 +65,22 @@ export default function Hero({
       <img
         src={backgroundImage}
         alt="Sydorak Processo Anódico"
+        style={{ objectPosition: imagePosition }}
         className="absolute inset-0 w-full h-full object-cover z-0 select-none pointer-events-none"
       />
 
       {/* Overlay de Gradiente Responsivo (Vertical no Mobile, Horizontal no Desktop se habilitado) */}
+      {/* lightOverlay: gradiente encerra mais cedo, deixando mais da foto visível sem véu escuro (mobile e desktop) */}
       <div
         className={cn(
-          'absolute inset-0 bg-gradient-to-b from-[#011025] via-[#011025]/90 to-transparent z-10',
+          'absolute inset-0 z-10',
+          lightOverlay
+            ? 'bg-gradient-to-b from-[#011025] from-5% via-[#011025]/60 via-40% to-transparent to-75%'
+            : 'bg-gradient-to-b from-[#011025] via-[#011025]/90 to-transparent',
           showDesktopOverlay
-            ? 'md:bg-gradient-to-r md:from-[#011025] md:via-[#011025]/80 md:to-transparent'
+            ? lightOverlay
+              ? 'md:bg-gradient-to-r md:from-[#011025] md:from-5% md:via-[#011025]/55 md:via-35% md:to-transparent md:to-65%'
+              : 'md:bg-gradient-to-r md:from-[#011025] md:via-[#011025]/80 md:to-transparent'
             : 'md:bg-none'
         )}
       />

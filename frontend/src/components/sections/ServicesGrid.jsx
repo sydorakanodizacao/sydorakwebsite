@@ -2,7 +2,7 @@ import { motion } from 'motion/react'
 import ServiceCard from '../ui/service-card'
 import protecaoEletroquimicaWebp from '../../assets/protecao-eletroquimica-card.webp'
 import acabamentosWebp from '../../assets/acabamentos-card.webp'
-import aplicacaoWebp from '../../assets/aplicacao-card.webp'
+import aplicacaoWebp from '../../assets/aplicacao-desafios-card.jpg'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -51,8 +51,8 @@ export default function ServicesGrid() {
       href: "#"
     },
     {
-      title: "Aplicações Industriais e Arquitetônicas",
-      description: "Arquitetura, Energia, Mecânica, Moveleira, Estruturas, Agropecuária e Transportes.",
+      title: "Experiência aplicada a grandes desafios",
+      description: "Quatro décadas de conhecimento também são construídas pelos desafios que aceitamos enfrentar.",
       imageSrc: aplicacaoWebp,
       href: "#"
     }

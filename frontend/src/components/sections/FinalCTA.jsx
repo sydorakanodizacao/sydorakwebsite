@@ -1,6 +1,5 @@
 import { motion } from 'motion/react'
 import Button from '../ui/button'
-import DashedLink from '../ui/dashed-link'
 import bannerCtaBg from '../../assets/WhatsApp Image 2026-08-24 at 08.30.42 (1).jpeg'
 
 const containerVariants = {
@@ -60,17 +59,10 @@ export default function FinalCTA() {
             variants={containerVariants}
             className="relative z-20 w-full flex flex-col items-center justify-center text-center"
           >
-            {/* Eyebrow */}
-            <motion.div variants={itemVariants}>
-              <DashedLink onDark={true} className="uppercase tracking-wider text-xs mb-3 pointer-events-none">
-                Fale conosco
-              </DashedLink>
-            </motion.div>
-
             {/* Headline Principal */}
             <motion.h2
               variants={itemVariants}
-              className="text-h2-section-mobile md:text-h2-section text-on-dark font-bold leading-tight max-w-[950px] mt-1 font-display"
+              className="text-h2-section-mobile md:text-h2-section text-on-dark font-bold leading-tight max-w-[950px] font-display"
             >
               Pronto para transformar seu alumínio?
             </motion.h2>
@@ -80,7 +72,7 @@ export default function FinalCTA() {
               variants={itemVariants}
               className="text-on-dark-muted text-body mt-3 mb-6 max-w-[600px]"
             >
-              Fale conosco agora. Respondemos em menos de 4 horas.
+              Fale conosco agora mesmo!
             </motion.p>
 
             {/* 2 Botões de CTA (WhatsApp e Formulário de Contato) */}
