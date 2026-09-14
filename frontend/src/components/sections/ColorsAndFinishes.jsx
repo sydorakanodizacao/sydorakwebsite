@@ -1,4 +1,7 @@
+import { useState } from 'react'
 import { motion } from 'motion/react'
+import Button from '../ui/button'
+import QualityParametersModal from '../ui/quality-parameters-modal'
 
 const colorItems = [
   {
@@ -92,12 +95,15 @@ const itemVariants = {
  * - Grid: 8 amostras em 4 colunas responsivas com o padrão de card animado da biblioteca.
  */
 export default function ColorsAndFinishes() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   return (
-    <section className="w-full bg-canvas py-20 md:py-28 px-6 lg:px-12 select-none overflow-hidden border-b border-hairline/20">
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
+    <>
+      <section className="w-full bg-canvas py-20 md:py-28 px-6 lg:px-12 select-none overflow-hidden border-b border-hairline/20">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
         variants={containerVariants}
         className="max-w-7xl mx-auto flex flex-col items-center gap-12"
       >
@@ -162,7 +168,31 @@ export default function ColorsAndFinishes() {
             </motion.div>
           ))}
         </div>
+
+        {/* Ações / Botões */}
+        <motion.div
+          variants={itemVariants}
+          className="flex flex-wrap items-center justify-center gap-4 w-full"
+        >
+          <Button variant="primary" icon={true} to="/contato" className="tracking-wide">
+            SOLICITAR ANÁLISE TÉCNICA
+          </Button>
+          <button
+            type="button"
+            onClick={() => setIsModalOpen(true)}
+            className="group inline-flex items-center justify-center gap-2 select-none font-sans text-button-md font-semibold tracking-wider rounded-[10px] transition-all duration-300 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-sky/50 px-8 py-4 border border-primary/40 bg-gradient-to-r from-primary/10 via-primary/20 to-primary/10 text-ink hover:border-primary hover:bg-primary/20 hover:shadow-card uppercase text-sm cursor-pointer"
+          >
+            Parâmetros de Qualidade Comuns
+          </button>
+        </motion.div>
       </motion.div>
     </section>
+
+    {/* Pop-up Técnico de Parâmetros de Qualidade */}
+    <QualityParametersModal
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+    />
+  </>
   )
 }

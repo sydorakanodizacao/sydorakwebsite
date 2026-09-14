@@ -11,7 +11,7 @@ const applicationsData = [
   },
   {
     title: 'Vidro Temperado',
-    anodizacao: 'Aplicação: perfis de alumínio e alguns acessórios',
+    anodizacao: 'Aplicação: Perfis de alumínio e alguns acessórios',
     pintura: 'Por que anodização: Proteção contra corrosão, acabamento limpo',
   },
   {
@@ -112,7 +112,7 @@ export default function Applications({
             <h2 className="text-3xl md:text-4xl lg:text-[48px] font-bold text-ink tracking-tight leading-tight">
               Aplicações
             </h2>
-            <p className="text-neutral-600 text-sm md:text-base leading-relaxed max-w-2xl mt-1">
+            <p className="text-neutral-600 text-sm md:text-base leading-relaxed max-w-4xl mt-1">
               Anodização não é &quot;um produto&quot;. É uma solução técnica. Seus usos abrangem indústrias e mercados.
             </p>
           </div>

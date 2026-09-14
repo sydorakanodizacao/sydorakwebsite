@@ -1,48 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { X, Award, ShieldCheck, FileText, Layers, CheckCircle2 } from 'lucide-react'
-import Button from '../ui/button'
-import HighlightLine from '../ui/highlight-line'
-import NormCard from '../ui/norm-card'
-import DashedLink from '../ui/dashed-link'
-import sobreNosBg from '../../assets/WhatsApp Image 2026-08-24 at 08.31.32.jpeg'
+import { Award, X, FileText, Layers, ShieldCheck, CheckCircle2 } from 'lucide-react'
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.16, 1, 0.3, 1], // Curve easeOutExpo
-    },
-  },
-}
-
-const imageVariants = {
-  hidden: { opacity: 0, x: 30 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.16, 1, 0.3, 1], // Curve easeOutExpo
-    },
-  },
-}
-
-const technicalNormsData = [
+export const technicalNormsData = [
   {
     code: 'ABNT NBR 12373',
     description: 'Anodização do alumínio e suas ligas.',
@@ -65,7 +25,7 @@ const technicalNormsData = [
   },
 ]
 
-const thicknessTableData = [
+export const thicknessTableData = [
   {
     classe: 'A 13',
     espessura: '11 a 15',
@@ -86,7 +46,7 @@ const thicknessTableData = [
   },
 ]
 
-const commonQualityParameters = [
+export const commonQualityParameters = [
   {
     title: 'Selagem',
     description: 'Fechamento rigoroso dos poros da camada anódica para assegurar resistência química e durabilidade.',
@@ -124,7 +84,7 @@ const commonQualityParameters = [
 /**
  * QualityParametersModal — Pop-up técnico completo com Normas, Tabela NBR 12.609 e Parâmetros de Qualidade.
  */
-function QualityParametersModal({ isOpen, onClose }) {
+export default function QualityParametersModal({ isOpen, onClose }) {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose()
@@ -316,142 +276,5 @@ function QualityParametersModal({ isOpen, onClose }) {
         </div>
       )}
     </AnimatePresence>
-  )
-}
-
-/**
- * QualityStandards — Seção "Normas Atendidas" (Página de Serviço).
- * Identidade 100% fiel à seção AboutSummary da Home, com os dois botões no rodapé e o pop-up técnico.
- */
-export default function QualityStandards() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-
-  return (
-    <>
-      <section className="w-full py-16 md:py-24 bg-canvas overflow-hidden border-b border-hairline/20">
-        <div className="max-w-[1440px] mx-auto px-4 md:px-6 xl:px-[112px] grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          {/* Coluna de Conteúdo (Esquerda) */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            variants={containerVariants}
-            className="flex flex-col w-full"
-          >
-            {/* Bloco Institucional */}
-            <div className="flex flex-col items-start w-full mb-6">
-              <motion.div variants={itemVariants}>
-                <DashedLink className="uppercase tracking-wider text-xs">
-                  Sobre nós
-                </DashedLink>
-              </motion.div>
-
-              <motion.h2
-                variants={itemVariants}
-                className="text-h2-section-mobile md:text-h2-section text-ink font-bold tracking-tight leading-none mt-6"
-              >
-                Tradição industrial com <span className="text-secondary">visão de futuro</span>
-              </motion.h2>
-
-              <motion.div variants={itemVariants} className="w-full mt-6">
-                <HighlightLine>
-                  Desde 1986, a Sydorak constrói confiança através da consistência técnica.
-                </HighlightLine>
-              </motion.div>
-
-              <motion.p
-                variants={itemVariants}
-                className="text-muted text-body mt-4 mb-0 leading-relaxed"
-              >
-                Evoluímos processos, desenvolvemos pessoas e investimos continuamente em qualidade para atender os mais variados projetos. E agora, com novo visual e identidade forte, estamos preparados para o futuro.
-              </motion.p>
-            </div>
-
-            {/* Bloco de Normas Técnicas */}
-            <div className="flex flex-col items-start w-full">
-              <motion.div variants={itemVariants}>
-                <DashedLink className="uppercase tracking-wider text-xs">
-                  Normas Técnicas
-                </DashedLink>
-              </motion.div>
-
-              <motion.h3
-                variants={itemVariants}
-                className="text-h3-subtitle-mobile md:text-h3-subtitle text-primary font-bold mt-6 mb-6"
-              >
-                Normas Atendidas
-              </motion.h3>
-
-              {/* Grade de NormCards */}
-              <motion.div
-                variants={itemVariants}
-                className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 w-full"
-              >
-                <NormCard
-                  title="ASTM B117"
-                  description="Teste de corrosão acelerada"
-                />
-                <NormCard
-                  title="ABNT NBR 12373"
-                  description="Anodização de alumínio"
-                />
-                <NormCard
-                  title="ISO 7599"
-                  description="Principal norma mundial para anodização decorativa/protetiva"
-                />
-                <NormCard
-                  title="QUALANOD"
-                  description="Sistema europeu de qualidade (muito usado em arquitetura)"
-                />
-                <NormCard
-                  className="sm:col-span-2"
-                  title="Homologação Eletrobras"
-                  description="Projetos críticos"
-                />
-              </motion.div>
-
-              {/* Botões na Base */}
-              <motion.div
-                variants={itemVariants}
-                className="flex flex-wrap items-center gap-4 w-full"
-              >
-                <Button variant="primary" icon={true} to="/contato">
-                  SOLICITAR ANÁLISE TÉCNICA
-                </Button>
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(true)}
-                  className="px-6 py-3 rounded-lg border border-primary/40 bg-gradient-to-r from-primary/10 via-primary/20 to-primary/10 text-ink text-sm font-semibold hover:border-primary hover:bg-primary/20 transition-all select-none"
-                >
-                  Parâmetros de Qualidade Comuns
-                </button>
-              </motion.div>
-            </div>
-          </motion.div>
-
-          {/* Coluna da Imagem (Direita) */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            variants={imageVariants}
-            className="w-full flex justify-center lg:justify-end lg:h-full order-first lg:order-last"
-          >
-            <img
-              src={sobreNosBg}
-              alt="Processo fabril de anodização da Sydorak"
-              className="w-full h-[400px] sm:h-[480px] lg:h-full max-w-[600px] lg:max-w-none object-cover object-center rounded-xl shadow-md border border-secondary/10"
-              loading="lazy"
-            />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Pop-up Técnico de Parâmetros de Qualidade */}
-      <QualityParametersModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
-    </>
   )
 }

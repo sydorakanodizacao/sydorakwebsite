@@ -7,7 +7,6 @@ import AnodizationVsPainting from '../components/sections/AnodizationVsPainting'
 import ColorsAndFinishes from '../components/sections/ColorsAndFinishes'
 import Applications from '../components/sections/Applications'
 import OurProcess from '../components/sections/OurProcess'
-import QualityStandards from '../components/sections/QualityStandards'
 import FAQ from '../components/sections/FAQ'
 import FinalCTA from '../components/sections/FinalCTA'
 
@@ -39,7 +38,6 @@ export default function Service() {
         <AnodizationVsPainting />
         <OurProcess />
         <Applications />
-        <QualityStandards />
         <ColorsAndFinishes />
         <FAQ />
         <FinalCTA />
