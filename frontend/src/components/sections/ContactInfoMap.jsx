@@ -11,15 +11,17 @@ import DashedLink from '../ui/dashed-link'
  */
 
 const GOOGLE_MAPS_SRC =
-  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3601.761763782046!2d-49.2374386!3d-25.512967!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dcfb27a3c3f07b%3A0x6b8f3b20bb3f30a4!2sR.%20Dr.%20Sim%C3%A3o%20Kossobudski%2C%201110%20-%20Boqueir%C3%A3o%2C%20Curitiba%20-%20PR%2C%2081730-410!5e0!3m2!1spt-BR!2sbr!4v1'
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.091176274488!2d-49.2295932!3d-25.5008818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dcfaec4b75f4ad%3A0x114995b7fb7a5763!2sSydorak%20Tratamentos%20de%20Superf%C3%ADcie!5e0!3m2!1spt-BR!2sbr!4v1'
+
+const SYDORAK_MAPS_URL = 'https://maps.app.goo.gl/54THsoxEvL9mpENr5'
 
 const contactBlocks = [
   {
     title: 'Endereço Físico',
     lines: [
-      'R. Dr. Simão Kossobudski, 1110',
-      'Boqueirão — Curitiba, Paraná',
-      'CEP: 81730-410',
+      { text: 'R. Dr. Simão Kossobudski, 1110', href: SYDORAK_MAPS_URL },
+      { text: 'Boqueirão — Curitiba, Paraná', href: SYDORAK_MAPS_URL },
+      { text: 'CEP: 81730-410', href: SYDORAK_MAPS_URL },
     ],
   },
   {
@@ -89,6 +91,8 @@ export default function ContactInfoMap() {
                       <a
                         key={i}
                         href={line.href}
+                        target={line.href.startsWith('http') ? '_blank' : undefined}
+                        rel={line.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                         className="hover:text-ink transition-colors duration-200 hover:underline"
                       >
                         {line.text}

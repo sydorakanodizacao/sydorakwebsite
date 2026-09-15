@@ -81,9 +81,16 @@ export default function Footer({ className, ...props }) {
           <div className="flex flex-col gap-4 text-on-dark-muted text-sm">
             <p>
               <strong>Endereço:</strong> <br/>
-              R. Dr. Simão Kossobudski, 1110<br/>
-              Boqueirão — Curitiba, Paraná<br/>
-              CEP: 81730-410
+              <a
+                href="https://maps.app.goo.gl/54THsoxEvL9mpENr5"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary transition-colors hover:underline"
+              >
+                R. Dr. Simão Kossobudski, 1110<br/>
+                Boqueirão — Curitiba, Paraná<br/>
+                CEP: 81730-410
+              </a>
             </p>
             <p>
               <strong>Telefones:</strong> <br/>
