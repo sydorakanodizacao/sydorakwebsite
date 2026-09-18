@@ -3,7 +3,7 @@ import Button from '../ui/button'
 import HighlightLine from '../ui/highlight-line'
 import NormCard from '../ui/norm-card'
 import DashedLink from '../ui/dashed-link'
-import sobreNosBg from '../../assets/WhatsApp Image 2026-08-24 at 08.31.32.jpeg'
+import sobreNosBg from '../../assets/WhatsApp Image 2026-09-18 at 10.57.03.jpeg'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -65,15 +65,9 @@ export default function AboutSummary() {
         >
           {/* Bloco Institucional */}
           <div className="flex flex-col items-start w-full mb-6">
-            <motion.div variants={itemVariants}>
-              <DashedLink className="uppercase tracking-wider text-xs">
-                Sobre nós
-              </DashedLink>
-            </motion.div>
-
             <motion.h2
               variants={itemVariants}
-              className="text-h2-section-mobile md:text-h2-section text-ink font-bold tracking-tight leading-none mt-6"
+              className="text-h2-section-mobile md:text-h2-section text-ink font-bold tracking-tight leading-none"
             >
               Tradição industrial com <span className="text-secondary">visão de futuro</span>
             </motion.h2>

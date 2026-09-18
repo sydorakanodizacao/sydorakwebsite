@@ -1,5 +1,4 @@
 import { motion } from 'motion/react'
-import DashedLink from '../ui/dashed-link'
 import angra3Img from '../../assets/angra3.png'
 import comercialImg from '../../assets/comercial.png'
 
@@ -32,6 +31,7 @@ const itemVariants = {
  * FeaturedProjects — Seção unificada de Projetos Destaque na página Sobre Nós.
  * 
  * Design Responsivo:
+ * - Título centralizado: "Experiência aplicada a grandes desafios".
  * - Desktop: Layout alternado elegante (Imagem-Texto / Texto-Imagem) em grade de 12 colunas.
  * - Mobile: Layout compacto unificado com imagens proporcionais (200px-260px), espaçamentos
  *   otimizados entre textos e títulos balanceados para caber confortavelmente na tela.
@@ -39,8 +39,24 @@ const itemVariants = {
 export default function FeaturedProjects() {
   return (
     <section className="w-full bg-canvas py-10 sm:py-14 md:py-24 px-4 sm:px-6 lg:px-12 select-none overflow-hidden border-b border-hairline/20">
-      <div className="max-w-7xl mx-auto flex flex-col gap-10 sm:gap-14 lg:gap-24">
+      <div className="max-w-7xl mx-auto flex flex-col gap-10 sm:gap-14 lg:gap-20">
         
+        {/* Título Centralizado da Seção */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="w-full flex flex-col items-center text-center"
+        >
+          <motion.h2
+            variants={itemVariants}
+            className="text-h2-section-mobile md:text-h2-section text-ink font-bold tracking-tight leading-tight max-w-4xl"
+          >
+            Experiência aplicada a grandes desafios
+          </motion.h2>
+        </motion.div>
+
         {/* Projeto 1: Setor de Geração de Energia */}
         <motion.div
           variants={containerVariants}
@@ -66,13 +82,9 @@ export default function FeaturedProjects() {
             variants={itemVariants}
             className="lg:col-span-6 flex flex-col items-start gap-2 sm:gap-3 md:gap-4"
           >
-            <DashedLink className="uppercase tracking-wider text-xs mb-0.5 md:mb-1">
-              Projeto Destaque
-            </DashedLink>
-
-            <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-[44px] font-bold text-ink tracking-tight leading-snug">
+            <h3 className="text-xl sm:text-2xl md:text-4xl lg:text-[44px] font-bold text-ink tracking-tight leading-snug">
               Setor de Geração de Energia (2016)
-            </h2>
+            </h3>
 
             <div className="flex flex-col gap-1 text-neutral-600 text-body leading-relaxed mb-1 sm:mb-2 max-w-xl">
               <p>
@@ -105,13 +117,9 @@ export default function FeaturedProjects() {
             variants={itemVariants}
             className="lg:col-span-6 flex flex-col items-start gap-2 sm:gap-3 md:gap-4 order-2 lg:order-1"
           >
-            <DashedLink className="uppercase tracking-wider text-xs mb-0.5 md:mb-1">
-              Projeto Destaque
-            </DashedLink>
-
-            <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-[44px] font-bold text-ink tracking-tight leading-snug">
+            <h3 className="text-xl sm:text-2xl md:text-4xl lg:text-[44px] font-bold text-ink tracking-tight leading-snug">
               Fachada Arquitetônica em Edifício Comercial
-            </h2>
+            </h3>
 
             <p className="text-neutral-600 text-body leading-relaxed mb-1 sm:mb-2">
               Aqui mostramos uma das aplicações da Anodização na arquitetura diferente de esquadrias.

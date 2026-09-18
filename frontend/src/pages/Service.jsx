@@ -1,6 +1,6 @@
 import Seo from '../components/layout/Seo'
 import Hero from '../components/sections/Hero'
-import heroServicosBg from '../assets/WhatsApp Image 2026-08-24 at 08.31.32 (1).jpeg'
+import heroServicosBg from '../assets/WhatsApp Image 2026-09-17 at 14.13.00.jpeg'
 import Stats from '../components/sections/Stats'
 import WhatIsAnodization from '../components/sections/WhatIsAnodization'
 import AnodizationVsPainting from '../components/sections/AnodizationVsPainting'
@@ -20,7 +20,6 @@ export default function Service() {
       <main>
         <Hero
           backgroundImage={heroServicosBg}
-          lightOverlay
           eyebrow="Serviço"
           highlightedText="Anodização de alumínio"
           highlightPosition="first"
@@ -32,13 +31,14 @@ export default function Service() {
           highlightLineText={null}
           bottomText="Atendimento direto com especialista"
           showDesktopOverlay={true}
+          imagePosition="center right"
         />
         <Stats />
         <WhatIsAnodization />
-        <AnodizationVsPainting />
         <OurProcess />
         <Applications />
         <ColorsAndFinishes />
+        <AnodizationVsPainting />
         <FAQ />
         <FinalCTA />
       </main>

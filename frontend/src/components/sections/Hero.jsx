@@ -31,13 +31,19 @@ const itemVariants = {
 
 import { cn } from '../../utils/cn'
 
+const DEFAULT_OVERLAY =
+  'bg-gradient-to-b from-[#011025]/80 from-5% via-[#011025]/50 via-45% to-transparent to-75% md:bg-gradient-to-r md:from-[#011025]/80 md:from-0% md:via-[#011025]/50 md:via-38% md:to-transparent md:to-68%'
+
+const DEFAULT_BOTTOM_OVERLAY =
+  'bg-gradient-to-t from-surface-darkest/40 via-transparent to-transparent'
+
 /**
  * Hero — Seção principal da página Home, Sobre Nós e Serviço.
  * 
  * DESIGN.md:
- * - Fundo: Imagem industrial otimizada com gradiente navy escuro translúcido.
+ * - Fundo: Imagem industrial otimizada com gradiente navy escuro translúcido e suave.
  * - Responsividade: Padding lateral com Grid Strict e overlay adaptativo.
- * - Elementos: SydorakLogo completa, H1 (destaque text-sky), HighlightLine (onDark), SupportHighlight.
+ * - Elementos: SydorakLogo completa, H1 (destaque text-sky com drop-shadow), HighlightLine (onDark), SupportHighlight.
  * - CTAs: Botão principal gradiente com seta e secundário translúcido.
  * - Animação: Cascata staggerChildren via motion/react.
  */
@@ -55,9 +61,10 @@ export default function Hero({
   secondaryButtonTo = '/sobre-nos',
   bottomText = 'Atendimento direto com especialista',
   showDesktopOverlay = true,
-  lightOverlay = false,
   imagePosition = 'center',
   highlightBlock = false,
+  overlayClassName,
+  bottomOverlayClassName,
 }) {
   return (
     <section className="relative w-full min-h-screen flex items-center overflow-hidden bg-surface-darkest">
@@ -69,24 +76,21 @@ export default function Hero({
         className="absolute inset-0 w-full h-full object-cover z-0 select-none pointer-events-none"
       />
 
-      {/* Overlay de Gradiente Responsivo (Vertical no Mobile, Horizontal no Desktop se habilitado) */}
-      {/* lightOverlay: gradiente encerra mais cedo, deixando mais da foto visível sem véu escuro (mobile e desktop) */}
+      {/* Overlay de Gradiente Responsivo (Vertical no Mobile, Horizontal no Desktop) */}
       <div
         className={cn(
           'absolute inset-0 z-10',
-          lightOverlay
-            ? 'bg-gradient-to-b from-[#011025] from-5% via-[#011025]/60 via-40% to-transparent to-75%'
-            : 'bg-gradient-to-b from-[#011025] via-[#011025]/90 to-transparent',
-          showDesktopOverlay
-            ? lightOverlay
-              ? 'md:bg-gradient-to-r md:from-[#011025] md:from-5% md:via-[#011025]/55 md:via-35% md:to-transparent md:to-65%'
-              : 'md:bg-gradient-to-r md:from-[#011025] md:via-[#011025]/80 md:to-transparent'
-            : 'md:bg-none'
+          overlayClassName ?? (showDesktopOverlay ? DEFAULT_OVERLAY : 'bg-gradient-to-b from-[#011025]/80 from-5% via-[#011025]/50 via-45% to-transparent to-75% md:bg-none')
         )}
       />
 
-      {/* Overlay Superior */}
-      <div className="absolute inset-0 bg-gradient-to-t from-surface-darkest via-transparent to-transparent z-10" />
+      {/* Overlay Inferior (Transição suave) */}
+      <div
+        className={cn(
+          'absolute inset-0 z-10 pointer-events-none',
+          bottomOverlayClassName ?? DEFAULT_BOTTOM_OVERLAY
+        )}
+      />
 
       {/* Container Principal */}
       <motion.div
@@ -103,7 +107,7 @@ export default function Hero({
         {/* Headline (H1) */}
         <motion.h1
           variants={itemVariants}
-          className="text-h1-hero-mobile md:text-h1-hero text-on-dark w-full max-w-[580px] md:max-w-[680px] lg:max-w-[720px] tracking-tight mb-8"
+          className="text-h1-hero-mobile md:text-h1-hero text-on-dark w-full max-w-[580px] md:max-w-[680px] lg:max-w-[720px] tracking-tight mb-8 drop-shadow-md"
         >
           {highlightPosition === 'first' && highlightedText ? (
             <>
@@ -133,7 +137,7 @@ export default function Hero({
         {description && (
           <motion.p
             variants={itemVariants}
-            className="text-on-dark-muted text-body md:text-lead w-full max-w-[450px] mb-10 leading-relaxed"
+            className="text-on-dark-muted text-body md:text-lead w-full max-w-[450px] mb-10 leading-relaxed drop-shadow-md"
           >
             {description}
           </motion.p>
