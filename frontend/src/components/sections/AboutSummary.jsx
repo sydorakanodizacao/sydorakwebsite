@@ -98,7 +98,7 @@ export default function AboutSummary() {
               variants={itemVariants}
               className="text-h3-subtitle-mobile md:text-h3-subtitle text-primary font-bold mt-6 mb-6"
             >
-              Normas Atendidas
+              Normas e Referências Técnicas
             </motion.h3>
 
             {/* Grade de NormCards */}
@@ -107,25 +107,25 @@ export default function AboutSummary() {
               className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 w-full"
             >
               <NormCard
-                title="ASTM B117"
-                description="Teste de corrosão acelerada"
-              />
-              <NormCard
                 title="ABNT NBR 12373"
-                description="Anodização de alumínio"
+                description="Anodização do alumínio e suas ligas."
               />
               <NormCard
                 title="ISO 7599"
-                description="Principal norma mundial para anodização decorativa/protetiva"
+                description="Anodização decorativa e protetora do alumínio."
               />
               <NormCard
-                title="QUALANOD"
-                description="Sistema europeu de qualidade (muito usado em arquitetura)"
+                title="ASTM B117"
+                description="Ensaio acelerado de resistência à corrosão por névoa salina."
+              />
+              <NormCard
+                title="ISO 2360"
+                description="Medição não destrutiva da espessura das camadas anodizadas."
               />
               <NormCard
                 className="sm:col-span-2"
-                title="Homologação Eletrobras"
-                description="Projetos críticos"
+                title="Especificações Técnicas do Cliente"
+                description="Desenvolvimento de processos conforme requisitos específicos de projetos industriais."
               />
             </motion.div>
 
