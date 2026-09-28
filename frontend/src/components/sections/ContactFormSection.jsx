@@ -1,7 +1,7 @@
 import { Headset } from 'lucide-react'
-import DashedLink from '../ui/dashed-link'
 import SydorakLogo from '../ui/sydorak-logo'
 import WhatsappCard from '../ui/whatsapp-card'
+import SocialNetworksCard from '../ui/social-networks-card'
 import MultiStepForm from '../ui/multi-step-form'
 
 /**
@@ -27,7 +27,7 @@ export default function ContactFormSection() {
       <div className="max-w-[1440px] mx-auto px-4 md:px-6 xl:px-[112px] pt-[168px] pb-[112px]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Coluna Esquerda — Textos e CTA WhatsApp */}
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-6">
             {/* Logo Completa em Destaque */}
             <div className="mb-2">
               <SydorakLogo dark={false} className="h-[48px] sm:h-[50px] md:h-[46px] lg:h-[50px] w-auto" />
@@ -44,6 +44,9 @@ export default function ContactFormSection() {
               buttonText="Conversar agora"
               href="https://wa.me/554132862028"
             />
+
+            {/* Bloco 2: Redes Sociais Oficiais */}
+            <SocialNetworksCard />
           </div>
 
           {/* Coluna Direita — Atendimento Técnico Personalizado + Formulário Multi-etapas */}
