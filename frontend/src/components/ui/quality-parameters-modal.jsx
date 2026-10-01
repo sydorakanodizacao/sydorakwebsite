@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { Award, X, FileText, Layers, ShieldCheck, CheckCircle2 } from 'lucide-react'
 
-export const technicalNormsData = [
+const technicalNormsData = [
   {
     code: 'ABNT NBR 12373',
     description: 'Anodização do alumínio e suas ligas.',
@@ -25,7 +25,7 @@ export const technicalNormsData = [
   },
 ]
 
-export const thicknessTableData = [
+const thicknessTableData = [
   {
     classe: 'A 13',
     espessura: '11 a 15',
@@ -46,7 +46,7 @@ export const thicknessTableData = [
   },
 ]
 
-export const commonQualityParameters = [
+const commonQualityParameters = [
   {
     title: 'Selagem',
     description: 'Fechamento rigoroso dos poros da camada anódica para assegurar resistência química e durabilidade.',

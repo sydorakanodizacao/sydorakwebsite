@@ -5,7 +5,6 @@ import Seo from '../components/layout/Seo'
 import { sanityClient, urlFor } from '../lib/sanity'
 import { cn } from '../utils/cn'
 
-import DashedLink from '../components/ui/dashed-link'
 import SydorakLogo from '../components/ui/sydorak-logo'
 
 const POSTS_QUERY = `*[_type == "post"] | order(publishedAt desc) {

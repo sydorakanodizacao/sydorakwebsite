@@ -4,7 +4,6 @@ import { PortableText } from '@portabletext/react'
 import { sanityClient, urlFor } from '../lib/sanity'
 import Button from '../components/ui/button'
 import Seo from '../components/layout/Seo'
-import DashedLink from '../components/ui/dashed-link'
 import SydorakLogo from '../components/ui/sydorak-logo'
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {

@@ -2,7 +2,6 @@ import { motion } from 'motion/react'
 import Button from '../ui/button'
 import HighlightLine from '../ui/highlight-line'
 import SupportHighlight from '../ui/support-highlight'
-import DashedLink from '../ui/dashed-link'
 import SydorakLogo from '../ui/sydorak-logo'
 import heroBg from '../../assets/Hero-home.jpg'
 
@@ -49,7 +48,6 @@ const DEFAULT_BOTTOM_OVERLAY =
  */
 export default function Hero({
   backgroundImage = heroBg,
-  eyebrow = 'Sydorak Anodização',
   title = 'Anodização que protege, valoriza e garante',
   highlightedText = 'durabilidade real.',
   highlightPosition = 'last',

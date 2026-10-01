@@ -20,7 +20,6 @@ export default function About() {
         <Hero
           backgroundImage={heroSobrenosBg}
           imagePosition="80% center"
-          eyebrow="Sobre nós"
           title="Raízes profundas."
           highlightedText="Visão de futuro."
           description="Desde 1986, a Sydorak constrói sua história com um princípio simples: fazer bem-feito e honrar a confiança de cada cliente."

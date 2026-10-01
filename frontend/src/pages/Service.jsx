@@ -20,7 +20,6 @@ export default function Service() {
       <main>
         <Hero
           backgroundImage={heroServicosBg}
-          eyebrow="Serviço"
           highlightedText="Anodização de alumínio"
           highlightPosition="first"
           title="com controle de processo."
