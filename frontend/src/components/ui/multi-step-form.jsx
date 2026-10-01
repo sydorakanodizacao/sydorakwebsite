@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { cn } from '../../utils/cn'
 import { formatarDocumento, mensagemDocumento } from '../../utils/documento'
+import { formatarTelefone } from '../../utils/telefone'
 import { SERVICOS_CONTATO } from '../../data/servicos-contato'
 import Label from './label'
 import Input from './input'
@@ -32,6 +33,9 @@ const FORM_INICIAL = {
   website: '',
 }
 
+// Campos com máscara aplicada a cada digitação
+const MASCARAS = { documento: formatarDocumento, whatsapp: formatarTelefone }
+
 export default function MultiStepForm({ onSubmit, className, ...props }) {
   const [currentStep, setCurrentStep] = useState(1)
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -50,7 +54,7 @@ export default function MultiStepForm({ onSubmit, className, ...props }) {
     const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
-      [name]: name === 'documento' ? formatarDocumento(value) : value,
+      [name]: MASCARAS[name] ? MASCARAS[name](value) : value,
     }))
   }
 
@@ -214,10 +218,10 @@ export default function MultiStepForm({ onSubmit, className, ...props }) {
                   type="tel"
                   value={formData.whatsapp}
                   onChange={handleChange}
-                  placeholder="(DD) 9 XXXX-XXXX"
+                  placeholder="(DD) 99999-9999"
                   maxLength={20}
                   autoComplete="tel"
-                  pattern="(?:\D*\d){10,13}\D*"
+                  pattern="(?:\D*\d){10,11}\D*"
                   title="Informe o telefone com DDD, ex.: (41) 99999-9999"
                   required
                 />
