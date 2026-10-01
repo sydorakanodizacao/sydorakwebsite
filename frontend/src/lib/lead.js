@@ -1,4 +1,5 @@
 import { obterAtribuicao } from '../utils/atribuicao'
+import { registrarFormSubmit } from './datalayer'
 
 const ERRO_PADRAO =
   'Não foi possível enviar sua solicitação agora. Tente novamente em instantes ou fale com a gente pelo WhatsApp.'
@@ -28,5 +29,13 @@ export async function enviarLead(dados) {
       /* resposta sem JSON — mantém a mensagem padrão */
     }
     throw new Error(mensagem)
+  }
+
+  // Conversão para o GTM só depois da confirmação do Omie. Falha de analytics nunca
+  // pode transformar um envio bem-sucedido em erro para o usuário.
+  try {
+    registrarFormSubmit(dados)
+  } catch {
+    /* ignora */
   }
 }

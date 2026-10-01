@@ -1,49 +1,59 @@
 /**
- * atribuicao — captura de UTMs/click IDs na página de entrada do site.
+ * atribuicao — persistência de UTMs/click IDs para não perder a origem do lead.
  *
- * O visitante costuma chegar na home ou num serviço e só depois navegar até /contato;
- * como o site é SPA, a query string se perde no caminho. Por isso capturamos na entrada
- * e enviamos junto com o formulário (só sai do navegador se a pessoa enviar o form).
+ * O visitante pode chegar por um anúncio, navegar, fechar a aba e voltar dias depois
+ * direto pelo endereço para preencher o formulário. Por isso guardamos três "toques":
  *
- * - atual:    origem desta visita (sessionStorage — some ao fechar a aba). Um novo clique
- *             de campanha durante a sessão substitui o anterior.
- * - primeiro: primeiro contato com o site (localStorage, 180 dias). Só é gravado com o
- *             consentimento do banner de cookies ('sydorak_cookie_consent').
+ * - atual:    origem desta visita (sessionStorage).
+ * - campanha: última visita que chegou com UTM/gclid/fbclid (localStorage, 90 dias).
+ *             Visitas diretas/orgânicas NÃO apagam — lógica de "último clique não direto" do GA.
+ * - primeiro: primeira visita ao site (localStorage, 180 dias).
  *
- * Privacidade: da página de entrada guardamos só o caminho (sem query) e do referrer só o
- * domínio — URLs completas podem carregar dados pessoais (ex.: e-mail em links de newsletter).
+ * `toqueDeConversao()` escolhe qual deles representa a origem do lead (usado no Omie e no dataLayer).
+ *
+ * Se o storage estiver bloqueado (Safari privado, cookies bloqueados), guarda em memória —
+ * vale até recarregar a página. Os dados só saem do navegador quando a pessoa envia o formulário.
+ * Privacidade: da página de entrada só o caminho (sem query); do referrer só o domínio.
  */
 
-const CHAVE_ATUAL = 'sydorak_atribuicao_atual'
-const CHAVE_PRIMEIRO = 'sydorak_atribuicao_primeiro'
-const CHAVE_CONSENTIMENTO = 'sydorak_cookie_consent'
-const VALIDADE_PRIMEIRO_MS = 180 * 24 * 60 * 60 * 1000
-const PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid']
+export const PARAMS_CAMPANHA = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid']
 
-// Storage pode lançar exceção (Safari privado, cookies bloqueados): nunca quebrar o site por isso
+const CHAVES = {
+  atual: 'sydorak_atribuicao_atual',
+  campanha: 'sydorak_atribuicao_campanha',
+  primeiro: 'sydorak_atribuicao_primeiro',
+}
+const DIA_MS = 24 * 60 * 60 * 1000
+const VALIDADE_MS = { campanha: 90 * DIA_MS, primeiro: 180 * DIA_MS }
+
+const memoria = {}
+
 function ler(tipo, chave) {
+  let valor
   try {
-    return JSON.parse(window[tipo].getItem(chave))
+    valor = window[tipo].getItem(chave)
   } catch {
-    return null
+    return memoria[chave] ?? null // storage indisponível — usa a memória
+  }
+  try {
+    return valor == null ? null : JSON.parse(valor)
+  } catch {
+    return null // valor corrompido
   }
 }
 
 function gravar(tipo, chave, valor) {
+  memoria[chave] = valor
   try {
     window[tipo].setItem(chave, JSON.stringify(valor))
   } catch {
-    /* armazenamento indisponível — segue sem atribuição */
+    /* storage indisponível — fica só em memória */
   }
 }
 
-function temConsentimento() {
-  try {
-    return window.localStorage.getItem(CHAVE_CONSENTIMENTO) === 'true'
-  } catch {
-    return false
-  }
-}
+const expirado = (toque, validade) => !toque?.em || !(Date.now() - Date.parse(toque.em) <= validade)
+
+export const temCampanha = (toque) => PARAMS_CAMPANHA.some((p) => toque?.[p])
 
 function referrerExterno() {
   try {
@@ -54,35 +64,45 @@ function referrerExterno() {
   }
 }
 
-/** Chamar uma vez, no carregamento do app (main.jsx). */
+/** Chamar uma vez, no carregamento do app (main.jsx), enquanto a query string existe. */
 export function capturarAtribuicao() {
   if (typeof window === 'undefined') return
 
   const params = new URLSearchParams(window.location.search)
   const toque = {}
-  for (const p of PARAMS) {
+  for (const p of PARAMS_CAMPANHA) {
     const v = params.get(p)
     if (v) toque[p] = v.slice(0, 200)
   }
-  const temCampanha = Object.keys(toque).length > 0
+  const veioDeCampanha = temCampanha(toque)
   toque.pagina_entrada = window.location.pathname
   const referrer = referrerExterno()
   if (referrer) toque.referrer = referrer
   toque.em = new Date().toISOString()
 
-  if (temCampanha || !ler('sessionStorage', CHAVE_ATUAL)) gravar('sessionStorage', CHAVE_ATUAL, toque)
-
-  if (temConsentimento()) {
-    const primeiro = ler('localStorage', CHAVE_PRIMEIRO)
-    const expirado = !primeiro?.em || Date.now() - Date.parse(primeiro.em) > VALIDADE_PRIMEIRO_MS
-    if (expirado) gravar('localStorage', CHAVE_PRIMEIRO, toque)
-  }
+  if (veioDeCampanha || !ler('sessionStorage', CHAVES.atual)) gravar('sessionStorage', CHAVES.atual, toque)
+  if (veioDeCampanha) gravar('localStorage', CHAVES.campanha, toque)
+  if (expirado(ler('localStorage', CHAVES.primeiro), VALIDADE_MS.primeiro)) gravar('localStorage', CHAVES.primeiro, toque)
 }
 
-/** Atribuição para enviar com o formulário. */
+/** Os três toques, para enviar junto com o formulário. */
 export function obterAtribuicao() {
-  if (typeof window === 'undefined') return {}
-  const atual = ler('sessionStorage', CHAVE_ATUAL) ?? {}
-  const primeiro = (temConsentimento() && ler('localStorage', CHAVE_PRIMEIRO)) || atual
-  return { primeiro, atual }
+  if (typeof window === 'undefined') return { atual: {}, campanha: {}, primeiro: {} }
+  const atual = ler('sessionStorage', CHAVES.atual) ?? {}
+  const campanhaSalva = ler('localStorage', CHAVES.campanha)
+  const campanha = expirado(campanhaSalva, VALIDADE_MS.campanha) ? {} : campanhaSalva
+  const primeiro = ler('localStorage', CHAVES.primeiro) ?? atual
+  return { atual, campanha, primeiro }
+}
+
+/**
+ * Toque que gerou o lead: esta visita, se veio de campanha; senão a última campanha
+ * (até 90 dias); senão o primeiro contato com o site; senão esta visita (acesso direto).
+ * Usado no navegador (dataLayer) e no servidor (características da conta no Omie).
+ */
+export function toqueDeConversao({ atual = {}, campanha = {}, primeiro = {} } = {}) {
+  if (temCampanha(atual)) return atual
+  if (temCampanha(campanha)) return campanha
+  if (Object.keys(primeiro).length) return primeiro
+  return atual
 }

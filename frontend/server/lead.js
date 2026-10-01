@@ -2,7 +2,8 @@
  * Lead do formulário de contato → Omie CRM — SOMENTE SERVIDOR.
  *
  * Fluxo (validado contra o CRM real da Sydorak em 30/09/2026):
- *   1. Conta: IncluirConta com CNPJ/CPF + características de UTM (primeiro toque).
+ *   1. Conta: IncluirConta com CNPJ/CPF + características de UTM (origem do lead — ver
+ *      toqueDeConversao em src/utils/atribuicao.js).
  *      Se o documento já existe → VerificarConta(cDoc) e reaproveita a conta (sem alterá-la).
  *      Assim o caminho comum (empresa nova) não gera nenhum erro no Omie — erros seguidos
  *      no mesmo método bloqueiam a API por 30 min (HTTP 425).
@@ -16,6 +17,7 @@
 import { createHash, randomBytes } from 'node:crypto'
 import { formatarDocumento, limparDocumento, validarDocumento } from '../src/utils/documento.js'
 import { SERVICOS_CONTATO } from '../src/data/servicos-contato.js'
+import { toqueDeConversao } from '../src/utils/atribuicao.js'
 import { ehDuplicado, ehNaoEncontrado, omie } from './omie.js'
 
 // Códigos do CRM da Sydorak (crm/fases, crm/status, crm/origens, crm/usuarios…)
@@ -94,7 +96,11 @@ export function validarLead(body) {
   if (erros.length) return { ok: false, campos: erros }
 
   const atr = body.atribuicao && typeof body.atribuicao === 'object' ? body.atribuicao : {}
-  lead.atribuicao = { primeiro: limparAtribuicao(atr.primeiro), atual: limparAtribuicao(atr.atual) }
+  lead.atribuicao = {
+    atual: limparAtribuicao(atr.atual),
+    campanha: limparAtribuicao(atr.campanha),
+    primeiro: limparAtribuicao(atr.primeiro),
+  }
   return { ok: true, lead }
 }
 
@@ -111,8 +117,9 @@ const listarAtribuicao = (a) =>
   CAMPOS_ATRIBUICAO.filter((c) => a[c]).map((c) => `${c}=${a[c]}`).join(', ')
 
 function montarObservacoes(lead) {
-  const { primeiro, atual } = lead.atribuicao
+  const { atual, campanha, primeiro } = lead.atribuicao
   const visita = listarAtribuicao(atual)
+  const ultimaCampanha = listarAtribuicao(campanha)
   const origem = listarAtribuicao(primeiro)
   return [
     'Lead do site (formulário /contato)',
@@ -121,8 +128,10 @@ function montarObservacoes(lead) {
     `Contato: ${lead.nome} · WhatsApp: ${lead.whatsapp} · E-mail: ${lead.email}`,
     `Mensagem: ${lead.mensagem}`,
     // O Omie exibe quebras de linha como "|": dentro de cada linha separamos por vírgula
-    visita && `Origem desta visita: ${visita}`,
-    origem && origem !== visita && `Primeiro contato com o site: ${origem}`,
+    `Origem do lead: ${listarAtribuicao(toqueDeConversao(lead.atribuicao)) || 'acesso direto'}`,
+    visita && `Esta visita: ${visita}`,
+    ultimaCampanha && ultimaCampanha !== visita && `Última campanha (até 90 dias): ${ultimaCampanha}`,
+    origem && origem !== visita && origem !== ultimaCampanha && `Primeiro contato com o site: ${origem}`,
   ].filter(Boolean).join('\n')
 }
 
@@ -136,7 +145,7 @@ function separarNome(nome) {
 // ---------------------------------------------------------------------------
 async function obterConta(lead, tel) {
   const docLimpo = limparDocumento(lead.documento)
-  const primeiroToque = Object.keys(lead.atribuicao.primeiro).length ? lead.atribuicao.primeiro : lead.atribuicao.atual
+  const origemLead = toqueDeConversao(lead.atribuicao)
   try {
     const conta = await omie('crm/contas', 'IncluirConta', {
       identificacao: { cCodInt: codInt(`conta:${docLimpo}`), cNome: lead.empresa, cDoc: lead.documento, nCodVend: CRM.vendedorAnderson },
@@ -145,7 +154,8 @@ async function obterConta(lead, tel) {
       informacoesAdicionais: { nNumFunc: 0, nFaixaFat: '', cCnae: '', cRegTrib: '' },
       tags: [],
       // Campos personalizados (o Omie cria a característica se não existir). Conteúdo até 60.
-      caracteristicas: CAMPOS_ATRIBUICAO.filter((c) => primeiroToque[c]).map((c) => ({ campo: c, conteudo: primeiroToque[c].slice(0, 60) })),
+      // Origem do lead = esta visita se veio de campanha; senão a última campanha; senão o 1º contato.
+      caracteristicas: CAMPOS_ATRIBUICAO.filter((c) => origemLead[c]).map((c) => ({ campo: c, conteudo: origemLead[c].slice(0, 60) })),
     })
     return { nCod: conta.nCod, nova: true }
   } catch (erro) {
