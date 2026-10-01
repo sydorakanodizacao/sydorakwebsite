@@ -3,6 +3,7 @@ import SydorakLogo from '../ui/sydorak-logo'
 import WhatsappCard from '../ui/whatsapp-card'
 import SocialNetworksCard from '../ui/social-networks-card'
 import MultiStepForm from '../ui/multi-step-form'
+import { enviarLead } from '../../lib/lead'
 
 /**
  * ContactFormSection — Seção Hero da página de Contato.
@@ -17,11 +18,6 @@ import MultiStepForm from '../ui/multi-step-form'
  * - Form Etapa 2: 24120-473
  */
 export default function ContactFormSection() {
-  const handleFormSubmit = (data) => {
-    // TODO: integrar com API de contato / Sanity / e-mail
-    console.log('Formulário de contato enviado:', data)
-  }
-
   return (
     <section className="bg-canvas">
       <div className="max-w-[1440px] mx-auto px-4 md:px-6 xl:px-[112px] pt-[168px] pb-[112px]">
@@ -66,7 +62,8 @@ export default function ContactFormSection() {
               </p>
             </div>
 
-            <MultiStepForm onSubmit={handleFormSubmit} />
+            {/* Envio → /api/lead → Omie CRM (oportunidade em 01 Prospect) */}
+            <MultiStepForm onSubmit={enviarLead} />
           </div>
         </div>
       </div>

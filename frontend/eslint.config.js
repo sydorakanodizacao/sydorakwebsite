@@ -18,4 +18,11 @@ export default defineConfig([
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
   },
+  {
+    // Vercel Functions e código só-servidor (integração Omie)
+    files: ['api/**/*.js', 'server/**/*.js'],
+    languageOptions: {
+      globals: globals.node,
+    },
+  },
 ])
