@@ -11,12 +11,17 @@
  *
  * `toqueDeConversao()` escolhe qual deles representa a origem do lead (usado no Omie e no dataLayer).
  *
+ * Se o visitante RECUSAR cookies no banner, nada é guardado a longo prazo (só a visita atual,
+ * em sessionStorage) e o que já existia é apagado — ver utils/consentimento.js.
+ *
  * Se o storage estiver bloqueado (Safari privado, cookies bloqueados), guarda em memória —
  * vale até recarregar a página. Os dados só saem do navegador quando a pessoa envia o formulário.
  * Privacidade: da página de entrada só o caminho (sem query); do referrer só o domínio.
  */
 
 export const PARAMS_CAMPANHA = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid']
+
+export const CHAVE_CONSENTIMENTO = 'sydorak_cookie_consent'
 
 const CHAVES = {
   atual: 'sydorak_atribuicao_atual',
@@ -53,6 +58,26 @@ function gravar(tipo, chave, valor) {
 
 const expirado = (toque, validade) => !toque?.em || !(Date.now() - Date.parse(toque.em) <= validade)
 
+function recusouCookies() {
+  try {
+    return window.localStorage.getItem(CHAVE_CONSENTIMENTO) === 'false'
+  } catch {
+    return false
+  }
+}
+
+/** Apaga as UTMs guardadas a longo prazo (chamado quando o visitante recusa cookies). */
+export function limparAtribuicaoPersistida() {
+  for (const chave of [CHAVES.campanha, CHAVES.primeiro]) {
+    delete memoria[chave]
+    try {
+      window.localStorage.removeItem(chave)
+    } catch {
+      /* storage indisponível */
+    }
+  }
+}
+
 export const temCampanha = (toque) => PARAMS_CAMPANHA.some((p) => toque?.[p])
 
 function referrerExterno() {
@@ -81,6 +106,7 @@ export function capturarAtribuicao() {
   toque.em = new Date().toISOString()
 
   if (veioDeCampanha || !ler('sessionStorage', CHAVES.atual)) gravar('sessionStorage', CHAVES.atual, toque)
+  if (recusouCookies()) return
   if (veioDeCampanha) gravar('localStorage', CHAVES.campanha, toque)
   if (expirado(ler('localStorage', CHAVES.primeiro), VALIDADE_MS.primeiro)) gravar('localStorage', CHAVES.primeiro, toque)
 }
@@ -89,6 +115,7 @@ export function capturarAtribuicao() {
 export function obterAtribuicao() {
   if (typeof window === 'undefined') return { atual: {}, campanha: {}, primeiro: {} }
   const atual = ler('sessionStorage', CHAVES.atual) ?? {}
+  if (recusouCookies()) return { atual, campanha: {}, primeiro: atual }
   const campanhaSalva = ler('localStorage', CHAVES.campanha)
   const campanha = expirado(campanhaSalva, VALIDADE_MS.campanha) ? {} : campanhaSalva
   const primeiro = ler('localStorage', CHAVES.primeiro) ?? atual

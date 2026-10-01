@@ -1,39 +1,42 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Button from './button'
+import { lerConsentimento, registrarConsentimento } from '../../utils/consentimento'
 
 /**
  * CookieBanner — Banner de consentimento de cookies em conformidade com a LGPD.
- * Armazena a decisão no localStorage ('sydorak_cookie_consent').
+ * Recusar visível ao lado de Aceitar, mesmo tamanho (não escondido em link). A decisão fica no localStorage
+ * ('sydorak_cookie_consent' = 'true' | 'false') e atualiza o Consent Mode do GTM
+ * (padrão negado no index.html) — ver utils/consentimento.js.
  */
 export default function CookieBanner() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(() => lerConsentimento() === null)
 
-  useEffect(() => {
-    const consent = localStorage.getItem('sydorak_cookie_consent')
-    if (!consent) {
-      setIsVisible(true)
-    }
-  }, [])
-
-  const handleAccept = () => {
-    localStorage.setItem('sydorak_cookie_consent', 'true')
+  const decidir = (aceito) => {
+    registrarConsentimento(aceito)
     setIsVisible(false)
   }
 
   if (!isVisible) return null
 
   return (
-    <div className="fixed bottom-0 left-0 w-full z-50 bg-canvas/90 backdrop-blur-md border-t border-hairline p-4 md:p-6 shadow-lg transition-all duration-300">
+    <div
+      role="region"
+      aria-label="Consentimento de cookies"
+      className="fixed bottom-0 left-0 w-full z-50 bg-canvas/90 backdrop-blur-md border-t border-hairline p-4 md:p-6 shadow-lg transition-all duration-300"
+    >
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-body-sm text-ink leading-relaxed text-center md:text-left">
-          Utilizamos cookies para melhorar sua experiência e analisar o tráfego do site. Ao continuar navegando, você concorda com a nossa{' '}
+          Usamos cookies para analisar o tráfego do site e medir nossas campanhas. Você pode aceitar ou recusar — o site funciona normalmente nos dois casos. Saiba mais na nossa{' '}
           <Link to="/privacidade" className="text-secondary font-medium underline hover:text-ink transition-colors">
             Política de Privacidade
           </Link>.
         </p>
         <div className="flex items-center gap-3 shrink-0">
-          <Button variant="primary" onClick={handleAccept} className="px-6 py-2.5 text-xs">
+          <Button variant="ghost" onClick={() => decidir(false)} className="px-6 py-2.5 text-xs uppercase border border-hairline">
+            Recusar
+          </Button>
+          <Button variant="primary" onClick={() => decidir(true)} className="px-6 py-2.5 text-xs">
             Aceitar
           </Button>
         </div>
