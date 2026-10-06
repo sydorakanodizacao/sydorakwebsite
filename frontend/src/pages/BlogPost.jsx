@@ -27,10 +27,27 @@ function BlogPostContent({ slug }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    sanityClient.fetch(POST_QUERY, { slug }).then((data) => {
-      setPost(data)
-      setLoading(false)
-    })
+    let isMounted = true
+
+    sanityClient
+      .fetch(POST_QUERY, { slug })
+      .then((data) => {
+        if (isMounted) {
+          setPost(data)
+          setLoading(false)
+        }
+      })
+      .catch((err) => {
+        console.error('Erro ao carregar artigo do Sanity:', err)
+        if (isMounted) {
+          setPost(null)
+          setLoading(false)
+        }
+      })
+
+    return () => {
+      isMounted = false
+    }
   }, [slug])
 
   if (loading) {

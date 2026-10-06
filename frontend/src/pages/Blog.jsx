@@ -32,13 +32,28 @@ export default function Blog() {
   const [visibleCount, setVisibleCount] = useState(6)
 
   useEffect(() => {
+    let isMounted = true
+
     Promise.all([
       sanityClient.fetch(POSTS_QUERY),
       sanityClient.fetch(CATEGORIES_QUERY),
-    ]).then(([fetchedPosts, fetchedCategories]) => {
-      setPosts(fetchedPosts)
-      setCategories(['Todas', ...fetchedCategories.map((c) => c.title)])
-    })
+    ])
+      .then(([fetchedPosts, fetchedCategories]) => {
+        if (isMounted) {
+          setPosts(fetchedPosts || [])
+          setCategories(['Todas', ...(fetchedCategories || []).map((c) => c.title)])
+        }
+      })
+      .catch((err) => {
+        console.error('Erro ao buscar artigos do Blog:', err)
+        if (isMounted) {
+          setPosts([])
+        }
+      })
+
+    return () => {
+      isMounted = false
+    }
   }, [])
 
   // Lógica de filtragem e ordenação combinada
