@@ -6,6 +6,7 @@ import HistoryTimeline from '../components/sections/HistoryTimeline'
 import BrandEvolution from '../components/sections/BrandEvolution'
 import Sustainability from '../components/sections/Sustainability'
 import FeaturedProjects from '../components/sections/FeaturedProjects'
+import LatestPosts from '../components/sections/LatestPosts'
 import FAQ from '../components/sections/FAQ'
 import FinalCTA from '../components/sections/FinalCTA'
 
@@ -36,6 +37,7 @@ export default function About() {
         <BrandEvolution />
         <Sustainability />
         <FeaturedProjects />
+        <LatestPosts />
         <FAQ />
         <FinalCTA />
       </main>

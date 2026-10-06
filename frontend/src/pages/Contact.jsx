@@ -1,6 +1,7 @@
 import Seo from '../components/layout/Seo'
 import ContactFormSection from '../components/sections/ContactFormSection'
 import ContactInfoMap from '../components/sections/ContactInfoMap'
+import LatestPosts from '../components/sections/LatestPosts'
 import FAQ from '../components/sections/FAQ'
 
 /**
@@ -18,6 +19,7 @@ export default function Contact() {
       />
       <ContactFormSection />
       <ContactInfoMap />
+      <LatestPosts />
       <FAQ />
     </main>
   )

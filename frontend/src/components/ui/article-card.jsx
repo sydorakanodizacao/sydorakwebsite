@@ -19,7 +19,8 @@ import { cn } from '../../utils/cn'
  */
 export default function ArticleCard({ post, className, ...props }) {
   const { title, slug, category, publishedAt, excerpt, imageUrl } = post
-  const to = `/blog/${slug.current}`
+  const slugString = typeof slug === 'string' ? slug : slug?.current || ''
+  const to = `/blog/${slugString}`
 
   const formattedDate = publishedAt
     ? new Date(publishedAt).toLocaleDateString('pt-BR', {
@@ -40,16 +41,25 @@ export default function ArticleCard({ post, className, ...props }) {
     >
       {/* Imagem do Artigo */}
       <div className="relative overflow-hidden aspect-video bg-surface-darkest">
-        {imageUrl && (
+        {imageUrl ? (
           <img
             src={imageUrl}
             alt={title}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
           />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-surface-darkest to-surface-dark">
+            <span className="text-primary/60 font-semibold text-xs uppercase tracking-wider select-none">
+              Sydorak Anodização
+            </span>
+          </div>
         )}
-        <div className="absolute top-4 left-4 bg-[#011025]/85 border border-[#1E4FA0]/30 text-primary text-xs font-bold px-3 py-1 rounded-[4px] backdrop-blur-[4px]">
-          {category}
-        </div>
+        {category && (
+          <div className="absolute top-4 left-4 bg-[#011025]/85 border border-[#1E4FA0]/30 text-primary text-xs font-bold px-3 py-1 rounded-[4px] backdrop-blur-[4px]">
+            {category}
+          </div>
+        )}
       </div>
 
       {/* Conteúdo */}

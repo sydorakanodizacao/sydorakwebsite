@@ -27,11 +27,12 @@ export default function ServiceCard({
   ...props
 }) {
   const isExternal = href && (href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel'))
+  const internalTo = to || (!isExternal && href ? href : undefined)
 
   // Escolha o elemento raiz dinamicamente
-  const Component = to ? Link : (href ? 'a' : 'div')
-  const componentProps = to
-    ? { to }
+  const Component = internalTo ? Link : (href ? 'a' : 'div')
+  const componentProps = internalTo
+    ? { to: internalTo }
     : href
     ? {
         href,

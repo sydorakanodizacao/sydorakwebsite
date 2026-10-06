@@ -42,19 +42,19 @@ export default function ServicesGrid() {
       title: "Proteção Eletroquímica",
       description: "Camada integrada ao alumínio. Alta resistência à corrosão e longa vida útil.",
       imageSrc: protecaoEletroquimicaWebp,
-      href: "#"
+      to: "/servicos"
     },
     {
       title: "Acabamentos Técnicos e Estéticos",
       description: "Fosco, Tons de Bronze, Preto, Cores que mantêm o reflexo metálico e elegância natural.",
       imageSrc: acabamentosWebp,
-      href: "#"
+      to: "/servicos"
     },
     {
       title: "Experiência aplicada a grandes desafios",
       description: "Quatro décadas de conhecimento também são construídas pelos desafios que aceitamos enfrentar.",
       imageSrc: aplicacaoWebp,
-      href: "#"
+      to: "/servicos"
     }
   ]
 
@@ -73,7 +73,7 @@ export default function ServicesGrid() {
               title={service.title}
               description={service.description}
               imageSrc={service.imageSrc}
-              href={service.href}
+              to={service.to}
               className="h-full"
             />
           </motion.div>
